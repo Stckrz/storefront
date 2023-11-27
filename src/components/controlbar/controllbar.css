@@ -1,0 +1,10 @@
+.controlbar-container{
+	color: #c9beb9;
+	display: flex;
+	align-items: center;
+}
+
+.controlbar-container a{
+	color: #c9beb9;
+}
+

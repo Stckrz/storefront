@@ -1,0 +1,5 @@
+.homedif{
+	display: flex;
+	flex-direction: column;
+	/* height: 10000px; */
+}

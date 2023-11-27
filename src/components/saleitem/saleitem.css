@@ -1,0 +1,38 @@
+.item-wrapper{
+	display: flex;
+	font-size: x-small;
+	width: 40%;
+	height: 350px;
+	background-color: white;
+	flex-direction: column;
+	margin: 10px;
+	padding: 5px;
+	align-items: center;
+}
+
+.img-container{
+	padding: 5px;
+	height: 280px;
+	width: 100%;
+	border: 1px solid black;
+}
+
+.img-container img{
+	object-fit: contain;
+	height: 280px;
+	width: 100%;
+}
+
+.item-name{
+	font-weight: bold;
+	line-height: 1em;
+}
+
+.pageview{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 500px;
+	width: 500px;
+}
+

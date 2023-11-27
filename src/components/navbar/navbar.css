@@ -1,0 +1,48 @@
+.nav-link-container{
+	color: black;
+	width: 100%;
+	margin: 0;
+}
+
+.category-link{
+	display: flex;
+	align-items: center;
+	margin: 0;
+	height: 40px;
+	padding-left: 5px;
+	padding-right: 5px;
+	width: 94%;
+}
+.category-link:hover{
+	transition: background-color 0.5s;
+	background-color: #efdede;
+}
+
+.navbar-wrapper{
+	position: sticky;
+	top: 0;
+	z-index: 15;
+}
+
+.hamburger{
+	position: absolute;
+	display: flex;
+	color: white;
+	align-items: center;
+	justify-content: center;
+	background-color: grey;
+	border-radius: 25%;
+	margin-top: 25px;
+	margin-left: 15px;
+	top: 0;
+}
+
+.expandible-navbar{
+	color: black;
+	position: absolute;
+	padding: 10px;
+	top: 4.5em;
+	background-color: #fff1ea;
+	height: 100vh;
+	width: 100%;
+}
