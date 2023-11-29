@@ -10,7 +10,8 @@ import logo from '../../library/photos/logo.png';
 export interface ICartItem {
 	title: string,
 	id: number,
-	price: number
+	price: number,
+	image: string
 }
 
 //the initial value for our carts contents
@@ -19,7 +20,8 @@ const cartInitial: IContextInterface = {
 		{
 			title: "",
 			id: 0,
-			price: 0
+			price: 0,
+			image: ""
 		}],
 	setCart: () => { },
 	idcount: 0,

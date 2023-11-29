@@ -1,0 +1,21 @@
+.compressed-item-container{
+	display: flex;
+	justify-content: space-between;
+	padding: 10px;
+}
+
+.compressed-item-img{
+	height: 50px;
+	width: 50px;
+}
+
+.compressed-item-title{
+	width: 50%;
+	overflow: hide;
+}
+
+.compressed-item-img img{
+	height: 50px;
+	width: 50px;
+
+}

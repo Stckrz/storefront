@@ -21,16 +21,13 @@ export const PageView: React.FC<PageViewProps> = ({ saleitem, setDetailsShown })
 	const { cart, setCart, idcount, setidcount } = useContext(CartContents)
 	const [count, setCount] = useState<number>(1);
 
+	const result = cart.find(({ title }) => title === saleitem.title)
 
 	function addCartClickHandler(item: ICartItem) {
-		let idcountCopy = idcount;
-		let cartCopy = [...cart]
-		for (let i = 0; i < count; i++) {
-			idcountCopy++;
-			cartCopy.push({ title: item.title, id: idcountCopy, price: item.price })
-		}
-		setidcount(idcountCopy)
-		setCart(cartCopy)
+		typeof result === "undefined" ?
+			cart.push({ title: item.title, id: idcount, price: item.price, image: item.image })
+			: console.log("balls")
+		setidcount(idcount + 1)
 	}
 
 	useEffect(() => {
