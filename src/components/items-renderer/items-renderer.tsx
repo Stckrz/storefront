@@ -14,7 +14,7 @@ export const ItemsRenderer: React.FC<ItemRendererProps> = ({ categoryName }) => 
 	async function fetchData(categoryName: string) {
 
 		interface ItemForSale {
-			id: number,
+			// id: number,
 			title: string,
 			price: number,
 			description: string,

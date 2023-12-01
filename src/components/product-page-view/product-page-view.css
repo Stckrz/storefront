@@ -78,17 +78,31 @@
 	align-items: flex-start;
 	font-size: large;
 	width: 90%;
+	gap: 5px;
 }
 
 .add-cart-button{
 	border: none;
-	height: 50px;
+	height: 4em;
 	width: 100%;
 	background-color: black;
 	color: white;
 }
 
+.cart-button-container{
+	width: 90%;
+}
+
 .description{
 	width: 90%;
 	border: 3px solid white;
+}
+.product-page-counter{
+	display: flex;
+	margin: 10px;
+	font-size: 12px;
+	/* height: 3em; */
+	/* width: 3em; */
+	scale: 150%;
+
 }

@@ -1,7 +1,15 @@
 .counter-wrapper{
 	display: flex;
 	flex-direction: row;
-	justify-content: center;
 	align-items: center;
-	gap: 5px;
+	justify-content: space-between;
+	padding-left: 5px;
+	padding-right: 5px;
+	height: 100%;
+}
+
+.counter-button{
+	border: none;
+	background-color: white;
+
 }

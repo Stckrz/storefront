@@ -1,20 +1,25 @@
 import React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import './counter.css';
+import { CartContents, ICartItem } from 'pages/layout/layout';
 
 interface CounterProps{
 	count: number,
-	setCount: Function
+	setCount: Function,
+	cartItem: ICartItem
 }
 
-export const Counter: React.FC<CounterProps> = ({ count, setCount }) => {
+export const Counter: React.FC<CounterProps> = ({ cartItem, count, setCount }) => {
+	const {cart, setCart} = useContext(CartContents)
 	function incrementHandler(){
 		setCount(count + 1)
+		setCart(cart.map((item) => cartItem.title === item.title ? {...item, quantity: item.quantity + 1}:item))
 	}
 
 	function decrementHandler(){
-		count > 0 &&
-		setCount(count - 1)
+		cartItem.quantity > 0 &&
+		setCart(cart.map((item) => cartItem.cartId === item.cartId ? {...item, quantity: item.quantity - 1}:item))
+		setCount(count - 1);
 	}
 
 	useEffect(()=>{},[count])
@@ -22,9 +27,9 @@ export const Counter: React.FC<CounterProps> = ({ count, setCount }) => {
 	return (
 		<>
 			<div className="counter-wrapper">
-				<button onClick={()=>{decrementHandler()}}>-</button>
-				<div>{count}</div>
-				<button onClick={()=>{incrementHandler()}}>+</button>
+				<button className="counter-button" onClick={()=>{decrementHandler()}}>-</button>
+				<div>{cartItem.quantity}</div>
+				<button className="counter-button" onClick={()=>{incrementHandler()}}>+</button>
 			</div>
 		</>
 	)

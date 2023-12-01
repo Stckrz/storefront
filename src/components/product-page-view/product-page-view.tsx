@@ -7,9 +7,10 @@ import { IoArrowBack } from 'react-icons/io5'
 
 interface PageViewProps {
 	saleitem: {
-		id: number,
+		cartId: number,
 		title: string,
 		price: number,
+		quantity: number,
 		description: string,
 		category: string,
 		image: string
@@ -24,16 +25,23 @@ export const PageView: React.FC<PageViewProps> = ({ saleitem, setDetailsShown })
 	const result = cart.find(({ title }) => title === saleitem.title)
 
 	function addCartClickHandler(item: ICartItem) {
-		typeof result === "undefined" ?
-			cart.push({ title: item.title, id: idcount, price: item.price, image: item.image })
-			: console.log("balls")
-		setidcount(idcount + 1)
+		console.log(result?.title)
+		if (typeof result === "undefined") {
+			cart.push({
+				title: item.title,
+				cartId: idcount,
+				price: item.price,
+				quantity: count,
+				image: item.image
+			})
+			setidcount(idcount + 1)
+		} else {
+			setCart(cart.map((cartitem) => cartitem.title === item.title ? { ...cartitem, quantity: cartitem.quantity + count } : cartitem))
+		}
 	}
 
 	useEffect(() => {
-
-
-	}, [cart])
+	}, [cart, count])
 
 	return (
 		<>
@@ -50,7 +58,12 @@ export const PageView: React.FC<PageViewProps> = ({ saleitem, setDetailsShown })
 					</div>
 					<div className="buying-options">
 						<div className="product-page-item-price">{`$${saleitem.price}`}</div>
-						<Counter count={count} setCount={setCount} />{count}
+						<div className="product-page-counter">
+							{count}
+							<Counter cartItem={saleitem} count={count} setCount={setCount} />
+						</div>
+					</div>
+					<div className="cart-button-container">
 						<button className="add-cart-button" onClick={() => { addCartClickHandler(saleitem) }}>Add to cart</button>
 					</div>
 					<div className="description">{saleitem.description}</div>

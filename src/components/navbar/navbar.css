@@ -1,10 +1,11 @@
 .nav-link-container{
-	color: black;
+	color: #c9beb9;
 	width: 100%;
 	margin: 0;
 }
 
 .category-link{
+	color: #c9beb9;
 	display: flex;
 	align-items: center;
 	margin: 0;
@@ -13,9 +14,14 @@
 	padding-right: 5px;
 	width: 94%;
 }
+
 .category-link:hover{
 	transition: background-color 0.5s;
 	background-color: #efdede;
+}
+
+.category-link:active{
+	color: #c9beb9;
 }
 
 .navbar-wrapper{
@@ -38,7 +44,7 @@
 }
 
 .expandible-navbar{
-	color: black;
+	color: #c9beb9;
 	position: absolute;
 	padding: 10px;
 	top: 4.5em;

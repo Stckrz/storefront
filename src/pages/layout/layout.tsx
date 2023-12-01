@@ -9,8 +9,9 @@ import logo from '../../library/photos/logo.png';
 //the shape of a cart item object
 export interface ICartItem {
 	title: string,
-	id: number,
+	cartId: number,
 	price: number,
+	quantity: number,
 	image: string
 }
 
@@ -19,8 +20,9 @@ const cartInitial: IContextInterface = {
 	cart: [
 		{
 			title: "",
-			id: 0,
+			cartId: 0,
 			price: 0,
+			quantity: 0,
 			image: ""
 		}],
 	setCart: () => { },
@@ -48,7 +50,7 @@ const Layout = () => {
 				<Navbar />
 				<div className="header-navbar">
 					<div className="logo">Storespace</div>
-					<div><ControlBar /></div>
+					<div className="control-bar-container"><ControlBar /></div>
 				</div>
 				<Outlet />
 			</CartContents.Provider>

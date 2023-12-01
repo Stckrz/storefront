@@ -5,9 +5,10 @@ import { PageView } from 'components/product-page-view/product-page-view';
 
 interface SaleItemProps {
 	saleitem: {
-		id: number,
+		cartId: number,
 		title: string,
 		price: number,
+		quantity: number,
 		description: string,
 		category: string,
 		image: string
