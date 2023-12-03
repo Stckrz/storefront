@@ -30,5 +30,6 @@ a:visited{
 }
 
 .control-bar-container{
-	width: 3.5em;
+	width: 5em;
+	height: 100%;
 }

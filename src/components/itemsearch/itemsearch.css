@@ -1,0 +1,12 @@
+.search-wrapper{
+	/* position: absolute; */
+	/* top: 55px; */
+	/* width: 150vw; */
+	/* height: 150vh; */
+	/* background-color: black; */
+}
+.search-results-container{
+	height: 50px;
+	width: 100%;
+	/* background-color: red; */
+}
