@@ -2,9 +2,6 @@ import React from 'react';
 import { useState } from 'react';
 import { Counter } from 'components/counter/counter';
 import './compressed-item.css';
-import { PageView } from 'components/product-page-view/product-page-view';
-import { CartContents, ICartItem } from 'pages/layout/layout';
-
 
 interface CompressedItemProps {
 	item: {

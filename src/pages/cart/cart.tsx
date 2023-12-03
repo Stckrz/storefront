@@ -2,7 +2,7 @@ import React from 'react';
 import { useContext } from 'react';
 import { CompressedItem } from 'components/compressed-item/compressed-item';
 import { CartTotal } from 'components/cart-total/cart-total';
-import { CartContents, ICartItem } from 'pages/layout/layout';
+import { CartContents } from 'pages/layout/layout';
 import './cart.css';
 
 export const Cart: React.FC = () => {
@@ -23,13 +23,13 @@ export const Cart: React.FC = () => {
 					}
 				</div>
 			</div>
-				<div className="cart-total-container">
-					<CartTotal />
+			<div className="cart-total-container">
+				<CartTotal />
 				<div>
-					
+
 				</div>
 				<button className="submit-order-button">Checkout</button>
-				</div>
+			</div>
 		</>
 	)
 }

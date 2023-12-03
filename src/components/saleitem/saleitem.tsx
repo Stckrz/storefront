@@ -1,44 +1,28 @@
 import React from 'react';
-import { useState } from 'react';
+import { IProduct } from 'library/contextstuff';
+import { Link } from 'react-router-dom';
 import './saleitem.css';
-import { PageView } from 'components/product-page-view/product-page-view';
 
 interface SaleItemProps {
-	saleitem: {
-		cartId: number,
-		title: string,
-		price: number,
-		quantity: number,
-		description: string,
-		category: string,
-		image: string
-	}
+	saleitem: IProduct
 	setScrollBehavior: Function
 
 };
 
-export const SaleItem: React.FC<SaleItemProps> = ({ saleitem, setScrollBehavior }) => {
-	const [detailsShown, setDetailsShown] = useState(false);
+export const SaleItem: React.FC<SaleItemProps> = ({ saleitem }) => {
 
 	return (
 		<>
-			{!detailsShown ?
-				<div className="item-wrapper" onClick={() => { setDetailsShown(!detailsShown) }}>
+			<Link to={`/products/${saleitem.id}`}>
+				<div className="item-wrapper">
 					<div className="img-container"><img src={saleitem.image} /></div>
 					<div className="item-info-container">
 						<div className="item-name">{saleitem.title}</div>
 						<div className="item-category">{saleitem.category}</div>
 						<div className="item-price">{`$${saleitem.price}`}</div>
 					</div>
-				</div> :
-				
-					<PageView
-						saleitem={saleitem}
-						setDetailsShown={setDetailsShown}
-					/>  
-					
-			}
-
+				</div>
+			</Link>
 		</>
 	);
 }

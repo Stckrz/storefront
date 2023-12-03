@@ -30,7 +30,7 @@ export const Navbar: React.FC = () => {
 			<div className="navbar-wrapper">
 				<div className="hamburger" onClick={() => { setNavVisible(!navVisible) }}>
 					{!navVisible ?
-					<IoMenuOutline size={"2.5em"} /> : <IoClose size={"2.5em"} /> 
+						<IoMenuOutline size={"2.5em"} /> : <IoClose size={"2.5em"} />
 					}
 				</div>
 
@@ -38,12 +38,12 @@ export const Navbar: React.FC = () => {
 					<div className="expandible-navbar">
 
 						<div className="nav-link-container">
-							<Link to="/"><p className="category-link" onClick = {() => { activeHandler("HOME") }}>HOME</p></Link>
+							<Link to="/"><p className="category-link" onClick={() => { activeHandler("HOME") }}>HOME</p></Link>
 							{
 								categoryLinks.map((item) => {
 									return (
 										item.isActive === true ?
-											<Link to={item.pathname}>	<p className="category-link" onClick = {() => { activeHandler(item.name) }}style={{ color: "black" }}>{item.name}</p></Link>
+											<Link to={item.pathname}>	<p className="category-link" onClick={() => { activeHandler(item.name) }} style={{ color: "black" }}>{item.name}</p></Link>
 											:
 											<Link to={item.pathname}>	<p className="category-link" onClick={() => { activeHandler(item.name) }}>{item.name}</p></Link>
 									)

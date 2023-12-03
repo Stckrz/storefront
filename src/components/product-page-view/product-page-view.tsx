@@ -1,30 +1,26 @@
 import React from 'react';
 import { useState, useEffect, useContext } from 'react';
-import { CartContents, ICartItem } from 'pages/layout/layout';
+import { useParams } from 'react-router-dom';
+import { CartContents } from 'pages/layout/layout';
+import { ItemsDatabase } from 'pages/layout/layout';
+import { IProduct } from 'library/contextstuff';
+
 import './product-page-view.css';
 import { Counter } from 'components/counter/counter';
 import { IoArrowBack } from 'react-icons/io5'
 
-interface PageViewProps {
-	saleitem: {
-		cartId: number,
-		title: string,
-		price: number,
-		quantity: number,
-		description: string,
-		category: string,
-		image: string
-	};
-	setDetailsShown: Function
-}
 
-export const PageView: React.FC<PageViewProps> = ({ saleitem, setDetailsShown }) => {
+export const PageView: React.FC = () => {
+	const { id } = useParams();
+	const [product, setProduct] = useState<IProduct>();
 	const { cart, setCart, idcount, setidcount } = useContext(CartContents)
+	const { data } = useContext(ItemsDatabase);
 	const [count, setCount] = useState<number>(1);
 
-	const result = cart.find(({ title }) => title === saleitem.title)
 
-	function addCartClickHandler(item: ICartItem) {
+	const result = cart.find(({ title }) => title === product?.title)
+
+	function addCartClickHandler(item: IProduct) {
 		console.log(result?.title)
 		if (typeof result === "undefined") {
 			cart.push({
@@ -41,34 +37,37 @@ export const PageView: React.FC<PageViewProps> = ({ saleitem, setDetailsShown })
 	}
 
 	useEffect(() => {
+		setProduct(data.find((item) => item.id.toString() === id))
 	}, [cart, count])
 
 	return (
 		<>
+			{product &&
 			<div className="overlay">
 				<div className="product-page-wrapper">
 					<div
 						className="close-button"
-						onClick={() => { setDetailsShown(false) }}>
+					>
 						<IoArrowBack size={"2em"} />
 					</div>
 					<div className="product-spotlight">
-						<div className="product-page-img-container"><img src={saleitem.image} /></div>
-						<div className="product-page-item-name">{saleitem.title}</div>
+						<div className="product-page-img-container"><img src={product.image} /></div>
+						<div className="product-page-item-name">{product.title}</div>
 					</div>
 					<div className="buying-options">
-						<div className="product-page-item-price">{`$${saleitem.price}`}</div>
+						<div className="product-page-item-price">{`$${product.price}`}</div>
 						<div className="product-page-counter">
 							{count}
-							<Counter cartItem={saleitem} count={count} setCount={setCount} />
+							{/* <Counter cartItem={product} count={count} setCount={setCount} /> */}
 						</div>
 					</div>
 					<div className="cart-button-container">
-						<button className="add-cart-button" onClick={() => { addCartClickHandler(saleitem) }}>Add to cart</button>
+						<button className="add-cart-button" onClick={() => { addCartClickHandler(product) }}>Add to cart</button>
 					</div>
-					<div className="description">{saleitem.description}</div>
+					<div className="description">{product.description}</div>
 				</div>
 			</div >
+			}
 		</>
 	)
 }

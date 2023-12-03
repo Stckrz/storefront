@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {Routes, Route} from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { HashRouter as Router } from 'react-router-dom';
+import { PageView } from 'components/product-page-view/product-page-view';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Home from './pages/home/home';
@@ -28,6 +29,8 @@ root.render(
 					<Route path="womensclothing" element={<WomensClothing />} />
 					<Route path="mensclothing" element={<MensClothing />} />
 					<Route path="cart" element={<Cart />} />
+					<Route path="products/:id" element={<PageView />} />
+
 				</Route>
 			</Routes>
 		</Router>

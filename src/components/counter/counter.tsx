@@ -1,7 +1,8 @@
 import React from 'react';
 import { useEffect, useContext } from 'react';
 import './counter.css';
-import { CartContents, ICartItem } from 'pages/layout/layout';
+import { CartContents } from 'pages/layout/layout';
+import { ICartItem } from 'library/contextstuff';
 
 interface CounterProps{
 	count: number,

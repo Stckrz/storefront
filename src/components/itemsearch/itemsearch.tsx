@@ -1,13 +1,12 @@
 import React from 'react';
 import { useState, useEffect, useContext } from 'react';
-import { CartContents, ICartItem } from 'pages/layout/layout';
-import { ItemsDatabase, IProduct } from 'pages/layout/layout';
+import { IProduct } from 'library/contextstuff';
+import { ItemsDatabase } from 'pages/layout/layout';
 import './itemsearch.css';
 
 
 export const ItemSearch: React.FC = () => {
 	const [searchText, setSearchText] = useState<string>("a");
-	const { cart } = useContext(CartContents);
 	const { data } = useContext(ItemsDatabase)
 
 
@@ -26,19 +25,17 @@ export const ItemSearch: React.FC = () => {
 				<input onChange={handleChange} />
 				<div className="search-results-container">
 					{searchText !== "" &&
-					<div>
-						{handleSearch().map((item) => {
-							return (
-								<div>{item.title}</div>
-							)
-						})
-						}
-					</div>
+						<div>
+							{handleSearch().map((item: IProduct) => {
+								return (
+									<div>{item.title}</div>
+								)
+							})
+							}
+						</div>
 					}
 				</div>
 			</div>
 		</>
 	)
-
-
 }
