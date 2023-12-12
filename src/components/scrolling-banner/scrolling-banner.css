@@ -1,0 +1,24 @@
+.banner-wrapper{
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 2em;
+	background-color: #61fa3e;
+	color: white;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.banner-text{
+	animation: text-scroll 10s infinite linear;
+	font-weight: bold;
+}
+
+@keyframes text-scroll{
+	0%{
+		transform: translateX(140%);
+	}
+	100%{
+		transform: translateX(-120%);
+	}
+}

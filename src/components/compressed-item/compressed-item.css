@@ -1,15 +1,22 @@
 .compressed-item-container{
 	display: flex;
+	justify-content: flex-start;
 	padding: 10px;
 	height: 80%;
 	gap: 10px;
 	width: 100%;
-	border-bottom: 1px solid black;
+
+	/* border-bottom: 1px solid black; */
 	overflow: auto;
+}
+.compressed-item-container a{
+	text-decoration: none;
+	color: black;
 }
 
 .compressed-item-img{
 	width: 40%;
+	aspect-ratio: 4/3;
 }
 
 .compressed-item-img img{

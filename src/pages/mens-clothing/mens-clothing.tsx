@@ -4,7 +4,8 @@ const MensClothing = () => {
 
 	return (
 		<>
-			<div><ItemsRenderer categoryName={"men's clothing"} /></div>
+			<ItemsRenderer categoryName={"men's clothing"} />
+
 		</>
 	)
 }

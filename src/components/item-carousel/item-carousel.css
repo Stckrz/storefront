@@ -1,0 +1,29 @@
+.carousel-container{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	width: 100vw;
+	height: 50%;
+	padding: 5px;
+	/* background-color: black; */
+	border: 1px solid black;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	counter-reset: item;
+	scroll-behavior: smooth;
+	scroll-snap-type: x mandatory;
+	scroll-snap-align: center;
+}
+.carousel-container::-webkit-scrollbar{
+	display: none;
+}
+
+.product-container{
+	height: 100%;
+	border: 1px solid black;
+	margin: 10px;
+	min-width: 100vw;
+	background-color: white;
+	scroll-snap-align: center;
+}

@@ -13,16 +13,22 @@ export const SaleItem: React.FC<SaleItemProps> = ({ saleitem }) => {
 
 	return (
 		<>
-			<Link to={`/products/${saleitem.id}`}>
-				<div className="item-wrapper">
-					<div className="img-container"><img src={saleitem.image} /></div>
-					<div className="item-info-container">
-						<div className="item-name">{saleitem.title}</div>
-						<div className="item-category">{saleitem.category}</div>
-						<div className="item-price">{`$${saleitem.price}`}</div>
-					</div>
+			<div className="item-wrapper">
+				<div className="img-container">
+					<Link to={`/products/${saleitem.id}`}>
+						<img src={saleitem.image} />
+					</Link>
 				</div>
-			</Link>
+				<div className="item-info-container">
+					<div className="item-name">
+						<Link to={`/products/${saleitem.id}`}>
+							{saleitem.title}
+						</Link>
+					</div>
+					<div className="item-category">{saleitem.category}</div>
+					<div className="item-price">{`$${saleitem.price}`}</div>
+				</div>
+			</div>
 		</>
 	);
 }

@@ -1,9 +1,11 @@
 export interface ICartItem {
 	title: string,
 	cartId: number,
+	productId: number,
 	price: number,
 	quantity: number,
-	image: string
+	image: string,
+	category: string
 }
 
 //the initial value for our carts contents
@@ -12,9 +14,11 @@ export const cartInitial: IContextInterface = {
 		{
 			title: "",
 			cartId: 0,
+			productId: 0,
 			price: 0,
 			quantity: 0,
-			image: ""
+			image: "",
+			category: ""
 		}],
 	setCart: () => { },
 	idcount: 0,

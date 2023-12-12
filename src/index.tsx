@@ -12,6 +12,7 @@ import Electronics from './pages/electronics/electronics';
 import Cart from './pages/cart/cart';
 import WomensClothing from './pages/womens-clothing/womens-clothing';
 import MensClothing from './pages/mens-clothing/mens-clothing';
+import Search from './pages/search/search';
 
 
 const root = ReactDOM.createRoot(
@@ -29,6 +30,7 @@ root.render(
 					<Route path="womensclothing" element={<WomensClothing />} />
 					<Route path="mensclothing" element={<MensClothing />} />
 					<Route path="cart" element={<Cart />} />
+					<Route path="search" element={<Search />} />
 					<Route path="products/:id" element={<PageView />} />
 
 				</Route>

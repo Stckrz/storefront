@@ -1,10 +1,12 @@
 import "./home.css";
-import { ItemsRenderer } from 'components/items-renderer/items-renderer';
+import { ProductCarousel } from 'components/item-carousel/item-carousel';
+import { Banner } from 'components/scrolling-banner/scrolling-banner';
 const Homepage = () => {
 	return (
 		<>
-			{/* <ItemsRenderer categoryName={"electronics"} /> */}
 			<div className="homedif">
+				<ProductCarousel />
+				<Banner bannertext={"Special new deals like.. all the time!"} />
 				hello
 			</div>
 		</>

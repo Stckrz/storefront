@@ -14,7 +14,10 @@ export const Navbar: React.FC = () => {
 		{ name: "MEN'S CLOTHING", pathname: "/mensclothing", isActive: false },
 		{ name: "WOMEN'S CLOTHING", pathname: "/womensclothing", isActive: false }])
 
-	const [navVisible, setNavVisible] = useState(false)
+	const mediaQuery = window.matchMedia("(min-width: 500px)")
+
+	console.log(mediaQuery.matches)
+	const [navVisible, setNavVisible] = useState<boolean>(true)
 
 	function activeHandler(a: string) {
 		let newList = [...categoryLinks]
@@ -22,36 +25,35 @@ export const Navbar: React.FC = () => {
 			a === item.name ? item.isActive = true : item.isActive = false
 		})
 		setCategoryLinks(newList)
-		setNavVisible(!navVisible)
 	}
 
 	return (
 		<>
 			<div className="navbar-wrapper">
 				<div className="hamburger" onClick={() => { setNavVisible(!navVisible) }}>
-					{!navVisible ?
+					{navVisible === false ?
 						<IoMenuOutline size={"2.5em"} /> : <IoClose size={"2.5em"} />
 					}
 				</div>
 
-				{navVisible === true &&
-					<div className="expandible-navbar">
+				{/* {navVisible === "visible" && */}
+					<div className="expandible-navbar" style={{visibility: navVisible ? "visible" : "hidden"}}>
 
 						<div className="nav-link-container">
-							<Link to="/"><p className="category-link" onClick={() => { activeHandler("HOME") }}>HOME</p></Link>
+							<div className="category-link" onClick={() => { activeHandler("HOME") }}><Link to="/">HOME</Link></div>
 							{
 								categoryLinks.map((item) => {
 									return (
 										item.isActive === true ?
-											<Link to={item.pathname}>	<p className="category-link" onClick={() => { activeHandler(item.name) }} style={{ color: "black" }}>{item.name}</p></Link>
+												<div className="category-link" onClick={() => { activeHandler(item.name) }} style={{ color: "black" }}><Link to={item.pathname}>{item.name}</Link></div>
 											:
-											<Link to={item.pathname}>	<p className="category-link" onClick={() => { activeHandler(item.name) }}>{item.name}</p></Link>
+												<div className="category-link" onClick={() => { activeHandler(item.name) }}><Link to={item.pathname}>{item.name}</Link></div>
 									)
 								})
 							}
 						</div>
 					</div>
-				}
+				{/* } */}
 			</div>
 		</>
 	)

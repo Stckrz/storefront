@@ -14,24 +14,18 @@ export const ControlBar: React.FC = () => {
 	return (
 		<>
 			<div className="controlbar-container">
-				<Link to="/"><IoHomeOutline /></Link>
-				<div className="search-wrapper">
-					{showSearch ?
-						<div onClick={() => { setShowSearch(!showSearch) }}>
-							<ItemSearch />
-						</div> :
-						<div onClick={()=>{setShowSearch(!showSearch)}}>
-						<IoSearchOutline />
+						<Link to="/"><IoHomeOutline /></Link>
+						<div className="search-wrapper">
+								<Link to="/search">
+								<IoSearchOutline />
+								</Link>
 						</div>
-					}
-
-				</div>
-				<div className="cart-icon-container">
-					<CartItemsIndicator />
-					<div className="cart-icon">
-						<Link to="/cart"><IoBagHandleOutline /></Link>
-					</div>
-				</div>
+						<div className="cart-icon-container">
+							<CartItemsIndicator />
+							<div className="cart-icon">
+								<Link to="/cart"><IoBagHandleOutline /></Link>
+							</div>
+						</div>
 			</div>
 		</>
 	)

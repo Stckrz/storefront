@@ -1,12 +1,13 @@
 import React from 'react';
 import { useState, useEffect, useContext } from 'react';
-import { CartContents } from 'pages/layout/layout'
+import { CartContents } from 'pages/layout/layout';
+import { DiscountInput } from 'components/input-discount/input-discount';
 import './cart-total.css';
 
-
 export const CartTotal: React.FC = () => {
-	const [cartTotal, setCartTotal] = useState<number>()
+	const [cartTotal, setCartTotal] = useState<number>(0)
 	const { cart } = useContext(CartContents)
+	const [discount, setDiscount] = useState<number>(0)
 
 	function getTotal() {
 		let total = 0;
@@ -16,17 +17,27 @@ export const CartTotal: React.FC = () => {
 		setCartTotal(total);
 	}
 
-	useEffect(()=>{
+	useEffect(() => {
 		getTotal()
-		},[cart])
+	}, [cart])
 
 	return (
 		<>
-			<div className="total-container">
-			<div>Total:</div>
-			<div>{cartTotal}</div>
-			</div>
+					<div className="total-container">
+			<DiscountInput setDiscount={setDiscount} />
+			{cart.length > 0 &&
+				<div>
+						<div>Total:</div>
+							<div>
+							{discount !== 0 &&
+								<div style={{ textDecoration: "line-through", color: "red" }}>{Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(cartTotal)}</div>
+							}
+								<div style={{ color: " #61fa3e" }}>{Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(cartTotal - (cartTotal * discount))}</div>
+							</div>
+						
+					</div>
+			}
+				</div>
 		</>
 	)
-
 }
