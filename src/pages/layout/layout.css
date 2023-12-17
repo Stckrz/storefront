@@ -2,6 +2,13 @@ body{
 	background-color: white;
 	color: black;
 }
+.app-wrapper{
+	height: 100vh;
+	background-color: white;
+	
+}
+
+
 
 a{
 	text-decoration: none;
@@ -11,25 +18,9 @@ a:visited{
 	color: black;
 }
 
-.header-navbar{
-	position: sticky;
-	color: #c9beb9;
-	top: 0;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	background-color: #fcefe8;
-	padding: 5px;
-	font-size: x-large;
-	border-bottom:1px solid white;
-	height: 75px;
-}
 
-.logo{
-	margin-left: 55px;
-}
 
 .control-bar-container{
-	width: 5em;
+	width: 6em;
 	height: 100%;
 }

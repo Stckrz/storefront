@@ -3,7 +3,8 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	height: 60vh;
+	/* height: 60vh; */
+	height: 80vh;
 	flex-direction: column;
 	overflow: hidden;
 }
@@ -26,6 +27,7 @@
 }
 
 .cart-total-container{
+	/* position: sticky; */
 	position: fixed;
 	width: 100%;
 	bottom: 0;
@@ -36,7 +38,7 @@
 	padding-right: 5px;
 	background-color: #fff1ea;
 	color: #c9beb9;
-	height: 25vh;
+	height: 20vh;
 }
 
 .disabled-submit-order-button{

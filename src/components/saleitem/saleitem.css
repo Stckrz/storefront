@@ -1,7 +1,7 @@
 .item-wrapper{
 	display: flex;
 	font-size: x-small;
-	width: 30%;
+	width: 40%;
 	aspect-ratio: 4/3;
 	background-color: white;
 	flex-direction: column;
@@ -23,7 +23,7 @@
 .img-container{
 	padding: 5px;
 	width: 100%;
-	height: 70%;
+	height: 90%;
 }
 .item-info-container{
 	height: 100%;

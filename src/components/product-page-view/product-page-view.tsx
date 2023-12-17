@@ -51,7 +51,6 @@ export const PageView: React.FC = () => {
 	return (
 		<>
 			{product &&
-				<div className="overlay">
 					<div className="product-page-wrapper">
 						<div
 							onClick={goBack}
@@ -74,7 +73,6 @@ export const PageView: React.FC = () => {
 						</div>
 						<div className="description">{product.description}</div>
 					</div>
-				</div >
 			}
 		</>
 	)

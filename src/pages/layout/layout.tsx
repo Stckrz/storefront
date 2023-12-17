@@ -38,12 +38,10 @@ const Layout = () => {
 		<>
 			<ItemsDatabase.Provider value={{ data, setData }}>
 				<CartContents.Provider value={{ cart, setCart, idcount, setidcount }}>
-					<Navbar />
-					<div className="header-navbar">
-						<div className="logo">Storespace</div>
-						<div className="control-bar-container"><ControlBar /></div>
-					</div>
+					<div className="app-wrapper">
+							<Navbar />
 					<Outlet />
+					</div>
 				</CartContents.Provider>
 			</ItemsDatabase.Provider>
 		</>
