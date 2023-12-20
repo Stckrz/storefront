@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import './navbar.css';
+import style from './navbar.module.css';
 import { IoMenuOutline } from 'react-icons/io5';
 import { IoClose } from 'react-icons/io5';
 
@@ -16,12 +16,9 @@ export const Navbar: React.FC = () => {
 		{ name: "MEN'S CLOTHING", pathname: "/mensclothing", isActive: false },
 		{ name: "WOMEN'S CLOTHING", pathname: "/womensclothing", isActive: false }])
 
-	const mediaQuery = window.matchMedia("(min-width: 500px)")
 	const width = useViewport();
 
-	console.log(width.width)
-	console.log(mediaQuery.matches)
-	const [navVisible, setNavVisible] = useState<boolean>(true)
+	const [navVisible, setNavVisible] = useState<boolean>(false)
 
 	function activeHandler(a: string) {
 		let newList = [...categoryLinks]
@@ -32,43 +29,63 @@ export const Navbar: React.FC = () => {
 		setCategoryLinks(newList)
 	}
 
+
 	return (
 		<>
-		{width.width < 400 ?	
-			<div className="navbar-wrapper">
-				<div className="hamburger-logo-group">
-					<div className="hamburger" onClick={() => { setNavVisible(!navVisible) }}>
-						{navVisible === false ?
-							<IoMenuOutline size={"2em"} /> : <IoClose size={"2em"} />
-						}
-					</div>
-
-					{navVisible === true &&
-						/* <div className="expandible-navbar" style={{ visibility: navVisible ? "visible" : "hidden" }}> */
-						<div className="expandible-navbar" >
-
-							<div className="nav-link-container">
-								<div className="category-link" onClick={() => { activeHandler("HOME") }}><Link to="/">HOME</Link></div>
-								{
-									categoryLinks.map((item) => {
-										return (
-											item.isActive === true ?
-												<div className="category-link" onClick={() => { activeHandler(item.name) }} style={{ color: "black" }}><Link to={item.pathname}>{item.name}</Link></div>
-												:
-												<div className="category-link" onClick={() => { activeHandler(item.name) }}><Link to={item.pathname}>{item.name}</Link></div>
-										)
-									})
-								}
-							</div>
+			{width.width <= 800 &&
+				<div className={ style.navbarWrapper }>
+					<div className={ style.hamburgerLogoGroup }>
+						<div className="hamburger" onClick={() => { setNavVisible(!navVisible) }}>
+							{navVisible === false ?
+								<IoMenuOutline size={"2em"} /> : <IoClose size={"2em"} />
+							}
 						</div>
-					}
-					<div className="store-name"><Link to="/">Storespace</Link></div>
-				</div>
-				<div className="control-bar-container"><ControlBar /></div>
-			</div>
-				:<div>butts</div>
-			}
 
+						{navVisible === true &&
+							/* <div className="expandible-navbar" style={{ visibility: navVisible ? "visible" : "hidden" }}> */
+							<div className={ style.expandibleNavbar } >
+
+								<div className={ style.navLinkContainer }>
+									<div className={ style.categoryLink } onClick={() => { activeHandler("HOME") }}><Link to="/">HOME</Link></div>
+									{
+										categoryLinks.map((item) => {
+											return (
+												item.isActive === true ?
+													<div className={ style.categoryLink } onClick={() => { activeHandler(item.name) }} style={{ color: "black" }}><Link to={item.pathname}>{item.name}</Link></div>
+													:
+													<div className={ style.categoryLink } onClick={() => { activeHandler(item.name) }}><Link to={item.pathname}>{item.name}</Link></div>
+											)
+										})
+									}
+								</div>
+							</div>
+						}
+						<div className={ style.storeName }><Link to="/">Storespace</Link></div>
+					</div>
+					<div className={ style.controlBarContainer }><ControlBar /></div>
+				</div>
+			}
+			{width.width > 800 &&
+				<div className={ style.desktopNavbarWrapper }>
+					{/* <div className="store-name"><Link to="/">Storespace</Link></div> */}
+					<div className={ style.navItems }>
+					<div className={ style.storeName }><Link to="/">Storespace</Link></div>
+						<div className={ style.desktopNavLinkContainer }>
+							{
+								categoryLinks.map((item) => {
+									return (
+										item.isActive === true ?
+											<div className={ style.categoryLink } onClick={() => { activeHandler(item.name) }} style={{ color: "black" }}><Link to={item.pathname}>{item.name}</Link></div>
+											:
+											<div className={ style.categoryLink } onClick={() => { activeHandler(item.name) }}><Link to={item.pathname} style={{color: '#c9beb9' }}>{item.name}</Link></div>
+									)
+								})
+							}
+						</div>
+						<div className={ style.controlBarContainer }><ControlBar /></div>
+					</div>
+				</div>
+			}
 		</>
 	)
 }

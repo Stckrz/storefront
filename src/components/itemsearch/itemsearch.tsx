@@ -3,7 +3,7 @@ import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { IProduct } from 'library/contextstuff';
 import { ItemsDatabase } from 'pages/layout/layout';
-import './itemsearch.css';
+import style from './itemsearch.module.css';
 
 
 export const ItemSearch: React.FC = () => {
@@ -20,19 +20,19 @@ export const ItemSearch: React.FC = () => {
 
 	return (
 		<>
-			<div className="searchbar-container">
+			<div className={ style.searchbarContainer }>
 				<input onChange={handleChange} />
-				<div className="search-results-container">
+				<div className={ style.searchResultsContainer }>
 					{searchText !== "" &&
 						<div>
 							{
 								handleSearch().map((item: IProduct) => {
 								return (
 										<Link to={`/products/${item.id}`}>
-									<div className="compressed-item-container">
-											<div className="compressed-item-img"><img src={item.image} /></div>
-											<div className="compressed-item-details">
-												<div className="compressed-item-title">{(item.title).toUpperCase()}</div>
+									<div className={ style.compressedItemContainer }>
+											<div className={ style.compressedItemImg }><img src={item.image} /></div>
+											<div className={ style.compressedItemDetails }>
+												<div className={ style.compressedItemTitle }>{(item.title).toUpperCase()}</div>
 												<div>{Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(item.price)}</div>
 											</div>
 									</div>

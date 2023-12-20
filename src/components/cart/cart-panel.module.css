@@ -1,0 +1,57 @@
+.cartPanelContainer{
+	position: absolute;
+	top: 50px;
+	right: 50px;
+	height: 50vh;
+	width: 300px;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	border: 1px solid grey;
+	padding: 5px;
+}
+.cartItemsWrapper{
+	overflow-y: auto;
+	height: 90vh;
+
+}
+.cartItemContainer{
+	padding: 5px;
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid black;
+}
+.emptyCartIndicator{
+	height: 90vh;
+	color: #c9beb9;
+}
+.cartPanelTotalContainer{
+	position: sticky;
+	width: 95%;
+	bottom: 20%;
+	height: 11vh;
+	display:  flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: #fff1ea;
+
+}
+.disabledSubmitOrderButton{
+	border: none;
+	background-color: grey;
+	color: white;
+	height: 30%;
+	width: 80%;
+}
+.submitOrderButton{
+	border: none;
+	background-color: black;
+	color: white;
+	height: 30%;
+	width: 80%;
+}
+
+
+

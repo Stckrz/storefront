@@ -1,14 +1,20 @@
 body{
 	background-color: white;
 	color: black;
+	min-height: 100%;
 }
-.app-wrapper{
+.appWrapper{
 	height: 100vh;
+	min-height: 100vh;
 	background-color: white;
-	
+	position: relative;
+	display: flex;
+	flex-direction: column;
 }
 
-
+.outletContainer{
+	flex-grow: 1;
+}
 
 a{
 	text-decoration: none;

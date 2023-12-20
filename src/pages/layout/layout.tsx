@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from 'react'
 import { Outlet } from 'react-router-dom';
-import './layout.css';
+import style from './layout.module.css';
 import {
 	ICartItem,
 	cartInitial,
@@ -9,7 +9,7 @@ import {
 	IDataContextInterface,
 } from '../../library/contextstuff';
 import { Navbar } from 'components/navbar/navbar';
-import { ControlBar } from 'components/controlbar/controlbar';
+import { Footer } from 'components/footer/footer';
 import logo from '../../library/photos/logo.png';
 
 export const ItemsDatabase = createContext<IDataContextInterface>(dataInitial)
@@ -38,9 +38,10 @@ const Layout = () => {
 		<>
 			<ItemsDatabase.Provider value={{ data, setData }}>
 				<CartContents.Provider value={{ cart, setCart, idcount, setidcount }}>
-					<div className="app-wrapper">
-							<Navbar />
-					<Outlet />
+					<div className={ style.appWrapper }>
+						<Navbar />
+						<div className={style.outletContainer}><Outlet /></div>
+						<Footer />
 					</div>
 				</CartContents.Provider>
 			</ItemsDatabase.Provider>

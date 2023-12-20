@@ -3,13 +3,12 @@ import ReactDOM from 'react-dom/client';
 import { Routes, Route } from 'react-router-dom';
 import { HashRouter as Router } from 'react-router-dom';
 import { PageView } from 'components/product-page-view/product-page-view';
-import './index.css';
+import './index.module.css';
 import reportWebVitals from './reportWebVitals';
 import Home from './pages/home/home';
 import Layout from './pages/layout/layout';
 import Jewelry from './pages/jewelry/jewelry';
 import Electronics from './pages/electronics/electronics';
-import Cart from './pages/cart/cart';
 import WomensClothing from './pages/womens-clothing/womens-clothing';
 import MensClothing from './pages/mens-clothing/mens-clothing';
 import Search from './pages/search/search';
@@ -29,7 +28,6 @@ root.render(
 					<Route path="electronics" element={<Electronics />} />
 					<Route path="womensclothing" element={<WomensClothing />} />
 					<Route path="mensclothing" element={<MensClothing />} />
-					<Route path="cart" element={<Cart />} />
 					<Route path="search" element={<Search />} />
 					<Route path="products/:id" element={<PageView />} />
 

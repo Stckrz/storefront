@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { discountarray } from 'library/data';
-import './input-discount.css';
+import style from './input-discount.module.css';
 
 interface DiscountInputProps {
 	setDiscount: Function
@@ -21,9 +21,9 @@ export const DiscountInput: React.FC<DiscountInputProps> = ({ setDiscount }) => 
 
 	return (
 		<>
-			<div className="discount-wrapper">
+			<div className={ style.discountWrapper }>
 				<input onChange={handleChange} />
-				<button className="discount-button" onClick={discountHandler}>Apply</button>
+				<button className={ style.discountButton } onClick={discountHandler}>Apply</button>
 			</div>
 		</>
 

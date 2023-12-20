@@ -1,9 +1,9 @@
 import React from 'react';
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import { SaleItem } from 'components/saleitem/saleitem';
 import { IProduct } from 'library/contextstuff';
-import { ItemsDatabase } from 'pages/layout/layout';
-import './items-renderer.css';
+import { SquareAdd } from 'components/adds/squareadd';
+import style from'./items-renderer.module.css';
 
 interface ItemRendererProps {
 	categoryName: string
@@ -11,8 +11,17 @@ interface ItemRendererProps {
 
 export const ItemsRenderer: React.FC<ItemRendererProps> = ({ categoryName }) => {
 	const [categoryList, setCategoryList] = useState([])
-	const { data } = useContext(ItemsDatabase);
-	const [scrollBehavior, setScrollBehavior] = useState<React.CSSProperties>({ position: "static" })
+	const [data, setData] = useState([]);
+
+	async function fetchData() {
+		const response = await fetch('https://fakestoreapi.com/products/');
+		const fetchedData = await response.json();
+		if (response.status === 200) {
+			setData(fetchedData)
+		} else {
+			setData([])
+		}
+	}
 
 	function getCategoryItems() {
 		let temparray: any = []
@@ -23,19 +32,33 @@ export const ItemsRenderer: React.FC<ItemRendererProps> = ({ categoryName }) => 
 	}
 
 	useEffect(() => {
+		fetchData()
 		getCategoryItems()
-	}, [categoryName])
+	}, [data])
 
 	return (
 		<>
-			<div className="items-container" style={scrollBehavior}>
-				{
-					categoryList.map((item) => {
-						return (
-							<SaleItem setScrollBehavior={setScrollBehavior} saleitem={item} />
-						)
-					})
-				}
+			<div className={ style.itemsRendererPageWrapper }>
+			{categoryList.length > 0 &&
+				<div className={ style.itemsField }>
+
+					<div className={ style.categoryName }>
+						{categoryName}
+					</div>
+					<div className={ style.itemCount }>{`${categoryList.length} Products`}</div>
+					<div className={ style.itemsContainer } >
+
+						{
+							categoryList.map((item) => {
+								return (
+									<SaleItem saleitem={item} />
+								)
+							})
+						}
+					</div>
+				</div>
+			}
+			<div className={ style.squarePageAdd }><SquareAdd/></div>
 			</div>
 		</>
 	)

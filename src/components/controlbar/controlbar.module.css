@@ -1,0 +1,25 @@
+.controlbarContainer{
+	color: #c9beb9;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	height: 100%;
+}
+
+.controlbarContainer a{
+	color: #c9beb9;
+}
+
+.cartIconContainer{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 25%;
+	position: relative;
+}
+
+.cartIcon{
+	z-index: 2;
+}
+

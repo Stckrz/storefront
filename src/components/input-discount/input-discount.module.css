@@ -1,10 +1,10 @@
-.discount-wrapper{
+.discountWrapper{
 	display: flex;
 	flex-direction: column;
 	width: 40%;
 }
 
-.discount-button{
+.discountButton{
 	border: none;
 	background-color: #41fc17;
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect, useContext } from 'react';
 import { CartContents } from 'pages/layout/layout';
 import { DiscountInput } from 'components/input-discount/input-discount';
-import './cart-total.css';
+import style from './cart-total.module.css';
 
 export const CartTotal: React.FC = () => {
 	const [cartTotal, setCartTotal] = useState<number>(0)
@@ -19,11 +19,11 @@ export const CartTotal: React.FC = () => {
 
 	useEffect(() => {
 		getTotal()
-	}, [cart])
+	}, [cart, cart.length])
 
 	return (
 		<>
-					<div className="total-container">
+					<div className={ style.totalContainer }>
 			<DiscountInput setDiscount={setDiscount} />
 			{cart.length > 0 &&
 				<div>

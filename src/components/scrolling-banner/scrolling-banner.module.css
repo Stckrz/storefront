@@ -1,4 +1,4 @@
-.banner-wrapper{
+.bannerWrapper{
 	display: flex;
 	align-items: center;
 	width: 100%;
@@ -9,7 +9,7 @@
 	margin-bottom: 5px;
 }
 
-.banner-text{
+.bannerText{
 	animation: text-scroll 10s infinite linear;
 	font-weight: bold;
 }

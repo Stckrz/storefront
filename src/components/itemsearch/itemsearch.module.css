@@ -1,18 +1,18 @@
-.searchbar-container{
+.searchbarContainer{
 	margin: 5px;
 	padding: 5px;
 	padding-right: 10px;
 }
 
-.searchbar-container a{
+.searchbarContainer a{
 	color: black;
 }
 
-.searchbar-container input{
+.searchbarContainer input{
 	width: 100%;
 }
 
-.search-results-container{
+.searchResultsContainer{
 	height: 50px;
 	width: 100%;
 }

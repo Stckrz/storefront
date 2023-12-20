@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Counter } from 'components/counter/counter';
-import './compressed-item.css';
+import style from './compressed-item.module.css';
 import { Link } from 'react-router-dom';
 import { ICartItem } from 'library/contextstuff';
 
@@ -15,20 +15,20 @@ export const CompressedItem: React.FC<CompressedItemProps> = ({ item }) => {
 
 	return (
 		<>
-			<div className="compressed-item-container">
-					<div className="compressed-item-img">
+			<div className={ style.compressedItemContainer }>
+					<div className={ style.compressedItemImg }>
 				<Link to={`/products/${item.productId}`}>
 						<img src={item.image} />
 				</Link>
 					</div>
-				<div className="compressed-item-details">
-						<div className="compressed-item-title">
+				<div className={ style.compressedItemDetails }>
+						<div className={ style.compressedItemTitle }>
 					<Link to={`/products/${item.productId}`}>
 							{(item.title).toUpperCase()}
 					</Link>
 						</div>
-					<div className="compressed-item-price">{Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(item.price * item.quantity)}</div>
-					<div className="compressed-item-quantity">
+					<div className={ style.compressedItemPrice }>{Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(item.price * item.quantity)}</div>
+					<div className={ style.compressedItemQuantity }>
 						<Counter cartItem={item} count={cartItemCount} setCount={setCartItemCount} />
 					</div>
 				</div>

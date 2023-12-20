@@ -1,32 +1,29 @@
 import React from 'react';
 import { IProduct } from 'library/contextstuff';
 import { Link } from 'react-router-dom';
-import './saleitem.css';
+import style from './saleitem.module.css';
 
 interface SaleItemProps {
 	saleitem: IProduct
-	setScrollBehavior: Function
-
 };
 
 export const SaleItem: React.FC<SaleItemProps> = ({ saleitem }) => {
 
 	return (
 		<>
-			<div className="item-wrapper">
-				<div className="img-container">
+			<div className={ style.itemWrapper }>
+				<div className={ style.imgContainer }>
 					<Link to={`/products/${saleitem.id}`}>
 						<img src={saleitem.image} />
 					</Link>
 				</div>
-				<div className="item-info-container">
-					<div className="item-name">
+				<div className={ style.itemInfoContainer }>
+					<div className={ style.itemName }>
 						<Link to={`/products/${saleitem.id}`}>
 							{saleitem.title}
 						</Link>
 					</div>
-					<div className="item-category">{saleitem.category}</div>
-					<div className="item-price">{`$${saleitem.price}`}</div>
+					<div className={ style.itemPrice }>{`${Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(saleitem.price)}`}</div>
 				</div>
 			</div>
 		</>

@@ -1,4 +1,4 @@
-.compressed-item-container{
+.compressedItemContainer{
 	display: flex;
 	justify-content: flex-start;
 	padding: 10px;
@@ -9,35 +9,35 @@
 	/* border-bottom: 1px solid black; */
 	overflow: auto;
 }
-.compressed-item-container a{
+.compressedItemContainer a{
 	text-decoration: none;
 	color: black;
 }
 
-.compressed-item-img{
+.compressedItemImg{
 	width: 40%;
 	aspect-ratio: 4/3;
 }
 
-.compressed-item-img img{
+.compressedItemImg img{
 	height: 100%;
 	width: 100%;
 	object-fit: contain;
 }
 
-.compressed-item-details{
+.compressedItemDetails{
 	display: flex;
 	gap: 10px;
 	flex-direction: column;
 	width: 100%;
 }
 
-.compressed-item-title{
+.compressedItemTitle{
 	font-size: 11px;
 	font-weight: bold;
 }
 
-.compressed-item-quantity{
+.compressedItemQuantity{
 	height: 2em;
 	width: 55%;
 	padding-left: 5px;
@@ -45,7 +45,7 @@
 	border: 1px solid black;
 	border-radius: 25px;
 }
-.compressed-item-counter{
+.compressedItemCounter{
 	border: 1px solid black;
 	border-radius: 25px;
 }
