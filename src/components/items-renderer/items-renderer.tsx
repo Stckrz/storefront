@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import { SaleItem } from 'components/saleitem/saleitem';
 import { IProduct } from 'library/contextstuff';
 import { SquareAdd } from 'components/adds/squareadd';
-import style from'./items-renderer.module.css';
+import style from './items-renderer.module.css';
+import { useViewport } from 'hooks/useViewport';
 
 interface ItemRendererProps {
 	categoryName: string
@@ -12,6 +13,7 @@ interface ItemRendererProps {
 export const ItemsRenderer: React.FC<ItemRendererProps> = ({ categoryName }) => {
 	const [categoryList, setCategoryList] = useState([])
 	const [data, setData] = useState([]);
+	const { width } = useViewport();
 
 	async function fetchData() {
 		const response = await fetch('https://fakestoreapi.com/products/');
@@ -38,27 +40,29 @@ export const ItemsRenderer: React.FC<ItemRendererProps> = ({ categoryName }) => 
 
 	return (
 		<>
-			<div className={ style.itemsRendererPageWrapper }>
-			{categoryList.length > 0 &&
-				<div className={ style.itemsField }>
+			<div className={style.itemsRendererPageWrapper}>
+				{categoryList.length > 0 &&
+					<div className={style.itemsField}>
 
-					<div className={ style.categoryName }>
-						{categoryName}
-					</div>
-					<div className={ style.itemCount }>{`${categoryList.length} Products`}</div>
-					<div className={ style.itemsContainer } >
+						<div className={style.categoryName}>
+							{categoryName}
+						</div>
+						<div className={style.itemCount}>{`${categoryList.length} Products`}</div>
+						<div className={style.itemsContainer} >
 
-						{
-							categoryList.map((item) => {
-								return (
-									<SaleItem saleitem={item} />
-								)
-							})
-						}
+							{
+								categoryList.map((item) => {
+									return (
+										<SaleItem saleitem={item} />
+									)
+								})
+							}
+						</div>
 					</div>
-				</div>
+				}
+				{width > 800 &&
+					<div className={style.squarePageAdd}><SquareAdd /></div>
 			}
-			<div className={ style.squarePageAdd }><SquareAdd/></div>
 			</div>
 		</>
 	)

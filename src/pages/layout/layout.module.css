@@ -3,6 +3,7 @@ body{
 	color: black;
 	min-height: 100%;
 }
+
 .appWrapper{
 	height: 100vh;
 	min-height: 100vh;
@@ -24,9 +25,8 @@ a:visited{
 	color: black;
 }
 
-
-
 .control-bar-container{
 	width: 6em;
 	height: 100%;
 }
+

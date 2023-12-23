@@ -41,7 +41,7 @@ const Layout = () => {
 					<div className={ style.appWrapper }>
 						<Navbar />
 						<div className={style.outletContainer}><Outlet /></div>
-						<Footer />
+						<div className={style.footerBox}><Footer /></div>
 					</div>
 				</CartContents.Provider>
 			</ItemsDatabase.Provider>
