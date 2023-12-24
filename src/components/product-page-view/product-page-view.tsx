@@ -7,6 +7,7 @@ import { IProduct } from 'library/contextstuff';
 import { useNavigate } from 'react-router-dom';
 
 import { useViewport } from 'hooks/useViewport';
+import { Dropdown } from 'components/dropdown/dropdown';
 
 import style from './product-page-view.module.css';
 import { Counter } from 'components/counter/counter';
@@ -77,7 +78,8 @@ export const PageView: React.FC = () => {
 						<div className={ style.cartButtonContainer }>
 							<button className={ style.addCartButton } onClick={() => { addCartClickHandler(product) }}>Add to cart</button>
 						</div>
-						<div className="description">{product.description}</div>
+						<div className={style.freeShipping}>free standard shipping on orders over $25.00</div>
+						<div className="description"><Dropdown description={product.description}/></div>
 						</div>
 					</div>
 			}

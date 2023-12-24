@@ -42,7 +42,6 @@ export const Navbar: React.FC = () => {
 						</div>
 
 						{navVisible === true &&
-							/* <div className="expandible-navbar" style={{ visibility: navVisible ? "visible" : "hidden" }}> */
 							<div className={ style.expandibleNavbar } >
 
 								<div className={ style.navLinkContainer }>
@@ -67,9 +66,8 @@ export const Navbar: React.FC = () => {
 			}
 			{width.width > 800 &&
 				<div className={ style.desktopNavbarWrapper }>
-					{/* <div className="store-name"><Link to="/">Storespace</Link></div> */}
 					<div className={ style.navItems }>
-					<div className={ style.storeName }><Link to="/">Storespace</Link></div>
+					<div className={ style.storeName } onClick={()=>{activeHandler("HOME")}}><Link to="/">Storespace</Link></div>
 						<div className={ style.desktopNavLinkContainer }>
 							{
 								categoryLinks.map((item) => {
@@ -82,7 +80,7 @@ export const Navbar: React.FC = () => {
 								})
 							}
 						</div>
-						<div className={ style.controlBarContainer }><ControlBar /></div>
+						<div className={ style.controlBarContainer } onClick = {()=>{activeHandler("HOME")}}><ControlBar /></div>
 					</div>
 				</div>
 			}

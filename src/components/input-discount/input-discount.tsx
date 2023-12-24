@@ -22,7 +22,7 @@ export const DiscountInput: React.FC<DiscountInputProps> = ({ setDiscount }) => 
 	return (
 		<>
 			<div className={ style.discountWrapper }>
-				<input onChange={handleChange} />
+				<input className={ style.discountInput } onChange={handleChange} />
 				<button className={ style.discountButton } onClick={discountHandler}>Apply</button>
 			</div>
 		</>

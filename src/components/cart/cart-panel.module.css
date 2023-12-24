@@ -19,8 +19,13 @@
 .cartItemContainer{
 	padding: 5px;
 	display: flex;
-	align-items: center;
+	flex-direction: column;
 	border-bottom: 1px solid black;
+}
+.deleteText{
+	/* align-self: flex-end; */
+	text-decoration-line: underline;
+	cursor: pointer;
 }
 .emptyCartIndicator{
 	height: 90vh;
@@ -30,7 +35,7 @@
 	position: sticky;
 	width: 95%;
 	bottom: 20%;
-	height: 11vh;
+	height: 20vh;
 	display:  flex;
 	flex-direction: column;
 	justify-content: center;

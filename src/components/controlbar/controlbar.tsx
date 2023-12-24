@@ -33,7 +33,6 @@ export const ControlBar: React.FC = () => {
 							<div className={ style.cartIcon }>
 								<div onClick={()=>{showCartHandler()}}><IoBagHandleOutline size={"1.5em"} /></div>
 						{showCart && <Cart/>}
-								{/* <Link to="/cart"><IoBagHandleOutline size={"1.5em"} /></Link> */}
 							</div>
 						</div>
 			</div>

@@ -15,6 +15,7 @@ body{
 
 .outletContainer{
 	flex-grow: 1;
+	height: auto;
 }
 
 a{

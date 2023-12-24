@@ -1,10 +1,16 @@
 .discountWrapper{
+	padding: 5px;
 	display: flex;
-	flex-direction: column;
-	width: 40%;
+	flex-direction: row;
+	height: 40%;
+}
+
+.discountInput{
+	width: 60%;
 }
 
 .discountButton{
+	width: 40%;
 	border: none;
 	background-color: #41fc17;
 }

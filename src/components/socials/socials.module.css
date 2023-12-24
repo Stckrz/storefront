@@ -1,0 +1,6 @@
+.socialIconsWrapper{
+	display: flex;
+	/* width: 30%; */
+	color: grey;
+	gap: 5px;
+}

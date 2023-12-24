@@ -6,12 +6,11 @@ const Homepage = () => {
 	return (
 		<>
 			<div className={style.homedif}>
-				<BannerAdd />
-				<div className={style.add}><SquareAdd /></div>
-				<SkyscraperAdd />
-				<ProductCarousel />
+				{/* <BannerAdd /> */}
+				{/* <div className={style.add}><SquareAdd /></div> */}
+				{/* <SkyscraperAdd /> */}
+				{/* <ProductCarousel /> */}
 				<Banner bannertext={"Special new deals like.. all the time!"} />
-				hello
 			</div>
 		</>
 	)

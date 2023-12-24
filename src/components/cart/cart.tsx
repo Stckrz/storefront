@@ -30,8 +30,8 @@ export const Cart: React.FC = () => {
 							cart.map((item) => {
 								return (
 									<div className={ style.cartItemContainer }>
-										<div onClick={() => { deleteCartItem(item) }}><IoClose /></div>
 										<CompressedItem item={{ cartId: item.cartId, productId: item.productId, title: item.title, price: item.price, quantity: item.quantity, image: item.image, category: item.category }} />
+										<div className={style.deleteText} onClick={() => { deleteCartItem(item) }}>Delete</div>
 									</div>
 								)
 							})
