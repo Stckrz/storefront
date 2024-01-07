@@ -1,5 +1,9 @@
 .totalContainer{
+	height: 50%;
 	display: flex;
 	justify-content: space-between;
 	width: 80%;
+}
+.discountButton{
+	height: 50px;
 }

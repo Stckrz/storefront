@@ -7,7 +7,6 @@ import { ICartItem } from 'library/contextstuff';
 
 interface CompressedItemProps {
 	item: ICartItem
-
 }
 
 export const CompressedItem: React.FC<CompressedItemProps> = ({ item }) => {
@@ -17,13 +16,13 @@ export const CompressedItem: React.FC<CompressedItemProps> = ({ item }) => {
 		<>
 			<div className={ style.compressedItemContainer }>
 					<div className={ style.compressedItemImg }>
-				<Link to={`/products/${item.productId}`}>
+				<Link to={`/products/${item.id}`}>
 						<img src={item.image} />
 				</Link>
 					</div>
 				<div className={ style.compressedItemDetails }>
 						<div className={ style.compressedItemTitle }>
-					<Link to={`/products/${item.productId}`}>
+					<Link to={`/products/${item.id}`}>
 							{(item.title).toUpperCase()}
 					</Link>
 						</div>

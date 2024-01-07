@@ -1,5 +1,6 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+
+import { useCallback, useEffect, useState } from 'react';
 import { SaleItem } from 'components/saleitem/saleitem';
 import { IProduct } from 'library/contextstuff';
 import { SquareAdd } from 'components/adds/squareadd';
@@ -16,7 +17,7 @@ export const ItemsRenderer: React.FC<ItemRendererProps> = ({ categoryName }) => 
 	const { width } = useViewport();
 
 	async function fetchData() {
-		const response = await fetch('https://fakestoreapi.com/products/');
+		const response = await fetch('http://127.0.0.1:8000/sale-items/SaleItem/?format=json');
 		const fetchedData = await response.json();
 		if (response.status === 200) {
 			setData(fetchedData)
@@ -36,20 +37,18 @@ export const ItemsRenderer: React.FC<ItemRendererProps> = ({ categoryName }) => 
 	useEffect(() => {
 		fetchData()
 		getCategoryItems()
-	}, [data])
+	}, [data.length])
 
 	return (
 		<>
-			<div className={style.itemsRendererPageWrapper}>
-				{categoryList.length > 0 &&
+			{categoryList.length > 0 &&
+				<div className={style.itemsRendererPageWrapper}>
 					<div className={style.itemsField}>
-
 						<div className={style.categoryName}>
 							{categoryName}
 						</div>
 						<div className={style.itemCount}>{`${categoryList.length} Products`}</div>
 						<div className={style.itemsContainer} >
-
 							{
 								categoryList.map((item) => {
 									return (
@@ -59,11 +58,10 @@ export const ItemsRenderer: React.FC<ItemRendererProps> = ({ categoryName }) => 
 							}
 						</div>
 					</div>
-				}
-				{width > 800 &&
 					<div className={style.squarePageAdd}><SquareAdd /></div>
+				</div>
+
 			}
-			</div>
 		</>
 	)
 }

@@ -10,7 +10,8 @@
 }
 
 .discountButton{
-	width: 40%;
+	height: 100%;
+	margin-left: 2px;
 	border: none;
 	background-color: #41fc17;
 }

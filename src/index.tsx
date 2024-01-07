@@ -7,10 +7,18 @@ import './index.module.css';
 import reportWebVitals from './reportWebVitals';
 import Home from './pages/home/home';
 import Layout from './pages/layout/layout';
-import Jewelry from './pages/jewelry/jewelry';
-import Electronics from './pages/electronics/electronics';
-import WomensClothing from './pages/womens-clothing/womens-clothing';
-import MensClothing from './pages/mens-clothing/mens-clothing';
+import Jewelry from './pages/category-templates/jewelry';
+import Electronics from './pages/category-templates/electronics';
+import WomensClothing from './pages/category-templates/womens-clothing';
+import MensClothing from './pages/category-templates/mens-clothing';
+import Dresses from './pages/category-templates/dresses';
+import Mens from './pages/category-templates/mens';
+import HairAccessories from './pages/category-templates/hair-accessories';
+import Skirts from './pages/category-templates/skirts';
+import CropTops from './pages/category-templates/crop-tops';
+import Sweaters from './pages/category-templates/sweaters';
+import WomensUnderwear from './pages/category-templates/womens-underwear';
+import TShirts from './pages/category-templates/tshirts';
 import Search from './pages/search/search';
 
 
@@ -28,6 +36,17 @@ root.render(
 					<Route path="electronics" element={<Electronics />} />
 					<Route path="womensclothing" element={<WomensClothing />} />
 					<Route path="mensclothing" element={<MensClothing />} />
+					<Route path="dresses" element={<Dresses />} />
+
+					<Route path="womens_shirts" element={<Dresses />} />
+					<Route path="tshirts" element={<TShirts />} />
+					<Route path="mens" element={<Mens />} />
+					<Route path="hairAccessories" element={<HairAccessories />} />
+					<Route path="skirts" element={<Skirts />} />
+					<Route path="cropTops" element={<CropTops />} />
+					<Route path="sweaters" element={<Sweaters />} />
+					<Route path="womensUnderwear" element={<WomensUnderwear />} />
+
 					<Route path="search" element={<Search />} />
 					<Route path="products/:id" element={<PageView />} />
 

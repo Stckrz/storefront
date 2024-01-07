@@ -1,7 +1,7 @@
 export interface ICartItem {
 	title: string,
 	cartId: number,
-	productId: number,
+	id: number,
 	price: number,
 	quantity: number,
 	image: string,
@@ -14,7 +14,7 @@ export const cartInitial: IContextInterface = {
 		{
 			title: "",
 			cartId: 0,
-			productId: 0,
+			id: 0,
 			price: 0,
 			quantity: 0,
 			image: "",
@@ -33,24 +33,32 @@ export interface IContextInterface {
 	setidcount: (stuff: number) => void
 }
 
+
+
+
 export interface IProduct {
 	id: number,
-	title: string,
+	name: string,
 	price: number,
 	description: string,
 	category: string,
-	image: string,
+	image_url: string,
+	comments: IComment[],
 }
+
+
+
 
 export const dataInitial: IDataContextInterface = {
 	data: [
 		{
 			id: 0,
-			title: "",
+			name: "",
 			price: 0,
 			description: "",
 			category: "",
-			image: "",
+			image_url: "",
+			comments: [],
 
 		}],
 	setData: () => { }
@@ -59,4 +67,16 @@ export const dataInitial: IDataContextInterface = {
 export interface IDataContextInterface {
 	data: IProduct[],
 	setData: (data: IProduct[]) => void
+}
+
+
+
+
+export interface IComment {
+	saleitem: number,
+	author: string,
+	body: string,
+	rating: number,
+	created_on: string,
+	active: boolean,
 }

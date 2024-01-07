@@ -11,10 +11,17 @@ import { useViewport } from 'hooks/useViewport';
 
 export const Navbar: React.FC = () => {
 	const [categoryLinks, setCategoryLinks] = useState([
-		{ name: "ELECTRONICS", pathname: "/electronics", isActive: true },
-		{ name: "JEWELRY", pathname: "/jewelry", isActive: false },
-		{ name: "MEN'S CLOTHING", pathname: "/mensclothing", isActive: false },
-		{ name: "WOMEN'S CLOTHING", pathname: "/womensclothing", isActive: false }])
+		// { name: "ELECTRONICS", pathname: "/electronics", isActive: true },
+		// { name: "JEWELRY", pathname: "/jewelry", isActive: false },
+		{ name: "T-SHIRTS", pathname: "/tshirts", isActive: false },
+		{ name: "SWEATERS", pathname: "/sweaters", isActive: false },
+		{ name: "SKIRTS", pathname: "/skirts", isActive: false },
+		{ name: "PANTIES", pathname: "/womensUnderwear", isActive: false },
+		{ name: "CROPS", pathname: "/cropTops", isActive: false },
+		{ name: "HAIR ACCESSORIES", pathname: "/hairAccessories", isActive: false },
+		{ name: "DRESSES", pathname: "/dresses", isActive: false },
+		{ name: "MENS", pathname: "/mens", isActive: false }
+	])
 
 	const width = useViewport();
 

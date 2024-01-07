@@ -2,7 +2,6 @@ import React from 'react';
 import { useEffect, useContext } from 'react';
 import style from './cart-panel.module.css';
 
-import { IoClose } from 'react-icons/io5';
 import { CompressedItem } from 'components/compressed-item/compressed-item';
 import { CartTotal } from 'components/cart-total/cart-total';
 import { CartContents } from 'pages/layout/layout';
@@ -30,7 +29,7 @@ export const Cart: React.FC = () => {
 							cart.map((item) => {
 								return (
 									<div className={ style.cartItemContainer }>
-										<CompressedItem item={{ cartId: item.cartId, productId: item.productId, title: item.title, price: item.price, quantity: item.quantity, image: item.image, category: item.category }} />
+										<CompressedItem item={{ cartId: item.cartId, id: item.id, title: item.title, price: item.price, quantity: item.quantity, image: item.image, category: item.category }} />
 										<div className={style.deleteText} onClick={() => { deleteCartItem(item) }}>Delete</div>
 									</div>
 								)

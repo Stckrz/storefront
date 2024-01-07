@@ -1,0 +1,19 @@
+.commentsContainer{
+	width: 100%;
+	align-self: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+}
+
+
+@media screen and (min-width: 800px){
+	.commentsContainer{
+		width: 50%;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+}

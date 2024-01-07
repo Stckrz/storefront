@@ -45,12 +45,9 @@
 .navbarWrapper{
 	user-select: none;
 	background-color: #fcefe8;
-	/* padding: 5px; */
-	position: sticky;
 	top: 0;
 	margin: 0;
 	height: 50px;
-	/* height: 7vh; */
 	z-index: 15;
 	display: flex;
 	justify-content: space-between;

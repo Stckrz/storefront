@@ -15,7 +15,7 @@ export const ItemSearch: React.FC = () => {
 	};
 
 	function handleSearch() {
-		return data.filter((item: IProduct) => item.title.toLowerCase().includes(searchText));
+		return data.filter((item: IProduct) => item.name.toLowerCase().includes(searchText));
 	};
 
 	return (
@@ -30,9 +30,9 @@ export const ItemSearch: React.FC = () => {
 								return (
 										<Link to={`/products/${item.id}`}>
 									<div className={ style.compressedItemContainer }>
-											<div className={ style.compressedItemImg }><img src={item.image} /></div>
+											<div className={ style.compressedItemImg }><img src={item.image_url} /></div>
 											<div className={ style.compressedItemDetails }>
-												<div className={ style.compressedItemTitle }>{(item.title).toUpperCase()}</div>
+												<div className={ style.compressedItemTitle }>{(item.name).toUpperCase()}</div>
 												<div>{Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(item.price)}</div>
 											</div>
 									</div>
