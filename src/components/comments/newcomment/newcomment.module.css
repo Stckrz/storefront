@@ -1,8 +1,13 @@
 .commentFormWrapper{
 	display: flex;
+	gap: 5px;
 	flex-direction: column;
 	background-color: white;
 }
 .commentFormWrapper p{
 	margin: 0;
+}
+
+.inputBody{
+	resize: none
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { IComment } from 'library/contextstuff';
+import { RatingStars } from 'components/star-rating/star-rating';
 import style from './comment.module.css';
 
 
@@ -18,6 +19,7 @@ export const Comment: React.FC<CommentProps> = ({ comment }) => {
 					<p>{post_date.toString()}</p>
 				</div>
 				<p>{comment.rating}</p>
+				<RatingStars rating={comment.rating}/>
 				<p>{comment.body}</p>
 			</div>
 		</>

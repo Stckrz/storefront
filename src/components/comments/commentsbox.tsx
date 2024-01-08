@@ -5,6 +5,7 @@ import { Comment } from 'components/comments/comment/comment';
 import { NewCommentForm } from 'components/comments/newcomment/newcomment';
 import style from './commentsbox.module.css';
 
+
 interface CommentsBoxProps {
 	id: string
 }
@@ -23,13 +24,14 @@ export const CommentsBox: React.FC<CommentsBoxProps> = ({ id }) => {
 	}
 
 
+
 	useEffect(() => {
 		fetchComments()
-	}, [id, comments])
-
+	}, [id])
+	console.log('b')
 	return (
 		<>
-			<NewCommentForm id={id}/>
+			<NewCommentForm id={id} onSubmit={fetchComments} />
 			{comments.length > 0 &&
 				<div className={style.commentsContainer}>
 					{comments.map((comment) => {
