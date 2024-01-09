@@ -12,8 +12,8 @@ interface NewCommentFormProps {
 
 export const NewCommentForm: React.FC<NewCommentFormProps> = ({ id, onSubmit }) => {
 	const [showForm, setShowForm] = useState(false)
-	const [author, setAuthor] = useState<string>("");
-	const [body, setBody] = useState<string>("");
+	const [author, setAuthor] = useState<string>(" ");
+	const [body, setBody] = useState<string>(" ");
 	const [rating, setRating] = useState<number>(0);
 
 

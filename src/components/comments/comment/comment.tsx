@@ -18,7 +18,6 @@ export const Comment: React.FC<CommentProps> = ({ comment }) => {
 					<p>{comment.author}</p>
 					<p>{post_date.toString()}</p>
 				</div>
-				<p>{comment.rating}</p>
 				<RatingStars rating={comment.rating}/>
 				<p>{comment.body}</p>
 			</div>

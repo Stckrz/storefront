@@ -5,7 +5,6 @@ import { Comment } from 'components/comments/comment/comment';
 import { NewCommentForm } from 'components/comments/newcomment/newcomment';
 import style from './commentsbox.module.css';
 
-
 interface CommentsBoxProps {
 	id: string
 }
@@ -22,8 +21,6 @@ export const CommentsBox: React.FC<CommentsBoxProps> = ({ id }) => {
 			setComments([])
 		}
 	}
-
-
 
 	useEffect(() => {
 		fetchComments()
