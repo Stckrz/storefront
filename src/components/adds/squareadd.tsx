@@ -1,5 +1,6 @@
 import style from './squareadd.module.css';
 import { useState, useEffect } from 'react';
+import { fetchAddUrl } from 'library/apifunctions';
 
 interface IAdvertisement {
 	name: string,
@@ -11,22 +12,12 @@ export const SquareAdd: React.FC = () => {
 	const [addUrls, setAddUrls] = useState<IAdvertisement[]>([]);
 	let randomNumber = randomUrl()
 
-	async function fetchAddUrl() {
-		const response = await fetch('http://127.0.0.1:8000/advertisements/Advertisement/?format=json');
-		const fetchedData = await response.json();
-		if (response.status === 200) {
-			setAddUrls(fetchedData)
-		} else {
-			setAddUrls([])
-		}
-	}
-
 	function randomUrl() {
 		return Math.floor(Math.random() * addUrls.length)
 	}
 
 	useEffect(() => {
-		fetchAddUrl()
+		fetchAddUrl().then((item) => setAddUrls(item))
 	}, [])
 	return (
 		<>

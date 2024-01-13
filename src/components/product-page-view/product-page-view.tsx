@@ -51,15 +51,13 @@ export const PageView: React.FC = () => {
 	}
 
 	function findProduct(){
-		
-		setProduct(
-			data.find((item) => item.id.toString() === id)
-		)
+		data &&
+		setProduct(data.find((item) => item.id.toString() === id))
 	}
 
 	useEffect(() => {
 		findProduct()
-	}, [id, cart, count])
+	}, [cart, count, data])
 
 	if (!id) {
 		return null

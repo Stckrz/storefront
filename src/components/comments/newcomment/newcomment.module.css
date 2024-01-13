@@ -1,5 +1,8 @@
 .commentFormWrapper{
+	width: 100%;
 	display: flex;
+	align-items: center;
+	justify-content: center;
 	gap: 5px;
 	flex-direction: column;
 	background-color: white;
@@ -9,5 +12,31 @@
 }
 
 .inputBody{
-	resize: none
+	resize: none;
+}
+.inputAuthor{
+	resize: none;
+}
+
+.authorForm{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+
+}
+
+.ratingForm{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+
+}
+
+.bodyForm{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
 }

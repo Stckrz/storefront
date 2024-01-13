@@ -14,12 +14,16 @@ export const Comment: React.FC<CommentProps> = ({ comment }) => {
 	return (
 		<>
 			<div className={style.commentWrapper}>
-				<div className={style.titlewrap}>
-					<p>{comment.author}</p>
-					<p>{post_date.toString()}</p>
+				<div className={style.authorContainer}>
+				<p>{comment.author}</p>
 				</div>
-				<RatingStars rating={comment.rating}/>
-				<p>{comment.body}</p>
+				<div className={style.bodyWrap}>
+					<RatingStars rating={comment.rating} />
+					<p className={style.commentBody} >{comment.body}</p>
+				</div>
+				<div className={style.dateContainer}>
+					<p>{post_date.toString()}</p>
+					</div>
 			</div>
 		</>
 	)

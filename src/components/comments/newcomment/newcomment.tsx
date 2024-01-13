@@ -3,14 +3,17 @@ import { useState } from 'react';
 import { IComment } from 'library/contextstuff';
 import style from './newcomment.module.css';
 
+import { sendComment, fetchComments } from 'library/apifunctions';
+
 import { RatingStarsPicker } from 'components/star-rating/star-picker';
 
 interface NewCommentFormProps {
 	id: string,
-	onSubmit?: (newComment: IComment | undefined) => {}
+	onSubmit?: (newComment: IComment | undefined) => void,
+	setComments: any
 }
 
-export const NewCommentForm: React.FC<NewCommentFormProps> = ({ id, onSubmit }) => {
+export const NewCommentForm: React.FC<NewCommentFormProps> = ({ id, onSubmit, setComments }) => {
 	const [showForm, setShowForm] = useState(false)
 	const [author, setAuthor] = useState<string>(" ");
 	const [body, setBody] = useState<string>(" ");
@@ -24,8 +27,7 @@ export const NewCommentForm: React.FC<NewCommentFormProps> = ({ id, onSubmit }) 
 		setBody(e.target.value)
 	}
 
-
-	async function sendComment() {
+	function sendCommentCallbackHandler(){
 		const date = new Date()
 		const newComment: IComment = {
 			saleitem: parseInt(id),
@@ -35,18 +37,9 @@ export const NewCommentForm: React.FC<NewCommentFormProps> = ({ id, onSubmit }) 
 			created_on: date.toString(),
 			active: true,
 		}
-		try {
-			const response = await fetch(`http://127.0.0.1:8000/sale-items/SaleItem/${id}/comments`, {
-				headers: { "Content-Type": 'application/json' },
-				method: 'POST',
-				body: JSON.stringify(newComment)
-			});
-
-			const data = await response.json();
-			onSubmit?.(newComment)
-			console.log(data);
-
-		} catch (error) { console.log(error) }
+		sendComment(id, author, body, rating)
+		fetchComments(id).then((item:any)=>setComments(item))
+		onSubmit?.(newComment)
 
 	}
 
@@ -54,13 +47,17 @@ export const NewCommentForm: React.FC<NewCommentFormProps> = ({ id, onSubmit }) 
 		<>
 			{showForm ?
 				<div className={style.commentFormWrapper}>
-					<p>Author:</p>
-					<input onChange={handleAuthorChange} />
-					<p>Body:</p>
-					<textarea className={style.inputBody} onChange={handleBodyChange} />
-					<p>Rating:</p>
-					<RatingStarsPicker setRating={setRating} />
-					<button onClick={sendComment}>submit</button>
+					<div className={style.ratingForm} >Rating:
+						<RatingStarsPicker setRating={setRating} />
+					</div>
+					<div className={style.authorForm}>Author:
+						<input className={style.inputAuthor} onChange={handleAuthorChange} />
+					</div>
+					<div className={style.bodyForm}>
+						Body:
+						<textarea className={style.inputBody} onChange={handleBodyChange} />
+					</div>
+					<button onClick={sendCommentCallbackHandler}>submit</button>
 					<button onClick={() => { setShowForm(!showForm) }}>cancel</button>
 				</div>
 				:

@@ -7,6 +7,8 @@ import { SquareAdd } from 'components/adds/squareadd';
 import style from './items-renderer.module.css';
 import { useViewport } from 'hooks/useViewport';
 
+import {fetchAllItems} from 'library/apifunctions';
+
 interface ItemRendererProps {
 	categoryName: string
 }
@@ -16,15 +18,6 @@ export const ItemsRenderer: React.FC<ItemRendererProps> = ({ categoryName }) => 
 	const [data, setData] = useState([]);
 	const { width } = useViewport();
 
-	async function fetchData() {
-		const response = await fetch('http://127.0.0.1:8000/sale-items/SaleItem/?format=json');
-		const fetchedData = await response.json();
-		if (response.status === 200) {
-			setData(fetchedData)
-		} else {
-			setData([])
-		}
-	}
 
 	function getCategoryItems() {
 		let temparray: any = []
@@ -35,7 +28,9 @@ export const ItemsRenderer: React.FC<ItemRendererProps> = ({ categoryName }) => 
 	}
 
 	useEffect(() => {
-		fetchData()
+		fetchAllItems().then(
+		(items) => setData(items)
+		)
 		getCategoryItems()
 	}, [data.length])
 

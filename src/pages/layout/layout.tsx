@@ -10,7 +10,9 @@ import {
 } from '../../library/contextstuff';
 import { Navbar } from 'components/navbar/navbar';
 import { Footer } from 'components/footer/footer';
-import logo from '../../library/photos/logo.png';
+
+import { fetchAllItems } from 'library/apifunctions';
+
 
 export const ItemsDatabase = createContext<IDataContextInterface>(dataInitial)
 export const CartContents = createContext<IContextInterface>(cartInitial)
@@ -21,26 +23,19 @@ const Layout = () => {
 	const [idcount, setidcount] = useState(0);
 	const [data, setData] = useState<any>();
 
-	async function fetchData() {
-		// const response = await fetch('https://fakestoreapi.com/products/');
-		const response = await fetch('http://127.0.0.1:8000/sale-items/SaleItem/?format=json');
-		const fetchedData = await response.json();
-		if (response.status === 200) {
-			setData(fetchedData)
-		} else {
-			setData([])
-		}
-	}
 	useEffect(() => {
-		fetchData()
+		fetchAllItems().then(
+			(item) => setData(item))
 	}, [])
+
+	console.log(data)
 	return (
 		<>
 			<ItemsDatabase.Provider value={{ data, setData }}>
 				<CartContents.Provider value={{ cart, setCart, idcount, setidcount }}>
-					<div className={ style.appWrapper }>
+					<div className={style.appWrapper}>
 						<Navbar />
-						
+
 						<div className={style.outletContainer}><Outlet /></div>
 						<div className={style.footerBox}><Footer /></div>
 					</div>
