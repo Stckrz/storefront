@@ -73,10 +73,35 @@ export interface IDataContextInterface {
 
 
 export interface IComment {
+	id: number | null
 	saleitem: number,
 	author: string,
 	body: string,
 	rating: number,
 	created_on: string,
 	active: boolean,
+}
+
+
+export interface ILogin{
+	username: string,
+	password: string,
+}
+
+export interface IRegister{
+	username: string,
+	password1: string,
+	password2: string,
+
+}
+
+export const loggedInUserInitial = {
+	loggedInUser: "",
+	setLoggedInUser: () => {}
+}
+
+export interface ILoggedInUserInterface{
+	loggedInUser: string,
+	setLoggedInUser: (loggedInUser: string) => void
+
 }

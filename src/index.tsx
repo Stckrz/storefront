@@ -21,6 +21,9 @@ import WomensUnderwear from './pages/category-templates/womens-underwear';
 import TShirts from './pages/category-templates/tshirts';
 import Search from './pages/search/search';
 
+import { RegisterUser } from './pages/accounts/register/register';
+import { UserLogin } from './pages/accounts/login/login';
+
 
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement
@@ -37,7 +40,6 @@ root.render(
 					<Route path="womensclothing" element={<WomensClothing />} />
 					<Route path="mensclothing" element={<MensClothing />} />
 					<Route path="dresses" element={<Dresses />} />
-
 					<Route path="womens_shirts" element={<Dresses />} />
 					<Route path="tshirts" element={<TShirts />} />
 					<Route path="mens" element={<Mens />} />
@@ -49,6 +51,10 @@ root.render(
 
 					<Route path="search" element={<Search />} />
 					<Route path="products/:id" element={<PageView />} />
+
+
+					<Route path="register" element={<RegisterUser />} />
+					<Route path="login" element={<UserLogin />} />
 
 				</Route>
 			</Routes>

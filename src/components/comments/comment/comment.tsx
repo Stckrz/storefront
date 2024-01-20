@@ -10,12 +10,11 @@ interface CommentProps {
 
 export const Comment: React.FC<CommentProps> = ({ comment }) => {
 	const post_date = new Date(comment.created_on).toLocaleDateString()
-
 	return (
 		<>
 			<div className={style.commentWrapper}>
 				<div className={style.authorContainer}>
-				<p>{comment.author}</p>
+					<p>{comment.author}</p>
 				</div>
 				<div className={style.bodyWrap}>
 					<RatingStars rating={comment.rating} />
@@ -23,7 +22,8 @@ export const Comment: React.FC<CommentProps> = ({ comment }) => {
 				</div>
 				<div className={style.dateContainer}>
 					<p>{post_date.toString()}</p>
-					</div>
+					<p>{comment.id}</p>
+				</div>
 			</div>
 		</>
 	)

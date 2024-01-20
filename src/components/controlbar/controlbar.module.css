@@ -18,3 +18,7 @@
 	height: 100%;
 	position: relative;
 }
+
+.loginContainer{
+	display: flex;
+}
