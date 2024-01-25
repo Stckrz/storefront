@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { IoHomeOutline } from 'react-icons/io5';
 import { IoSearchOutline } from 'react-icons/io5';
 import { IoBagHandleOutline } from 'react-icons/io5';
-import { FaRegUser } from 'react-icons/fa';
+import { FaCircle } from "react-icons/fa6";
 
 import { Cart } from 'components/cart/cart';
 
@@ -38,14 +38,18 @@ export const ControlBar: React.FC = () => {
 						<Link to="register">
 							Create an account
 						</Link>
-						 -- 
+						<FaCircle size={'0.5em'}/>
 						<Link to="login">
-						Sign in
+							Sign in
 						</Link>
 					</div>
-					:<div className={style.loginContainer}>{loggedInUser} -- <div onClick={()=>{setLoggedInUser("default")}}><Link to="logout">Sign out</Link></div></div>
-				}	
-				
+					: <div className={style.loginContainer}>
+						<div>{loggedInUser}</div>
+						<div><FaCircle size={'0.5em'}/></div>
+						<div onClick={() => { setLoggedInUser("default") }}><Link to="logout">Sign out</Link></div>
+					</div>
+				}
+
 
 				<div className={style.searchWrapper}>
 					<div onClick={() => { showSearchHandler() }}><IoSearchOutline size={"1.5em"} /></div>

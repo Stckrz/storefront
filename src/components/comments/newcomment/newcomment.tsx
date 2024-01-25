@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useContext } from 'react';
 import { IComment } from 'library/contextstuff';
 import style from './newcomment.module.css';
+import formStyles from 'library/formStyles.module.css';
 
 import { sendComment, fetchComments } from 'library/apifunctions';
 
@@ -26,7 +27,7 @@ export const NewCommentForm: React.FC<NewCommentFormProps> = ({ id, onSubmit, se
 		setBody(e.target.value)
 	}
 
-	function sendCommentCallbackHandler(){
+	function sendCommentCallbackHandler() {
 		const date = new Date()
 		const newComment: IComment = {
 			id: null,
@@ -38,7 +39,7 @@ export const NewCommentForm: React.FC<NewCommentFormProps> = ({ id, onSubmit, se
 			active: true,
 		}
 		sendComment(id, loggedInUser, body, rating)
-		fetchComments(id).then((item:any)=>setComments(item))
+		fetchComments(id).then((item: any) => setComments(item))
 		onSubmit?.(newComment)
 
 	}
@@ -54,12 +55,14 @@ export const NewCommentForm: React.FC<NewCommentFormProps> = ({ id, onSubmit, se
 						Body:
 						<textarea className={style.inputBody} onChange={handleBodyChange} />
 					</div>
-					<button onClick={sendCommentCallbackHandler}>submit</button>
-					<button onClick={() => { setShowForm(!showForm) }}>cancel</button>
+					<div className={style.buttonBox} >
+						<button className={formStyles.formButton} onClick={sendCommentCallbackHandler}>submit</button>
+						<button className={formStyles.formButton} onClick={() => { setShowForm(!showForm) }}>cancel</button>
+					</div>
 				</div>
 				:
-				<div>
-					<button onClick={() => { setShowForm(!showForm) }}>add comment</button>
+				<div className={style.newCommentButtonBox} >
+					<button className={formStyles.formButton} onClick={() => { setShowForm(!showForm) }}>add comment</button>
 				</div>
 			}
 		</>

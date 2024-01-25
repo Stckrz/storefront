@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useContext } from 'react';
 import style from './login.module.css';
+import formStyles from 'library/formStyles.module.css';
 import { sendLogin } from 'library/apifunctions';
 
 
@@ -20,7 +21,7 @@ export const UserLogin: React.FC = () => {
 			"password": pass,
 		}
 		let a = await sendLogin(userData)
-		a.non_field_errors 
+		a.non_field_errors
 			?
 			setLoginError(a.non_field_errors[0])
 			:
@@ -33,11 +34,15 @@ export const UserLogin: React.FC = () => {
 			{loggedInUser === 'default' ?
 				<div className={style.loginFormContainer}>
 					<div className={style.loginWrap}>
-						username:
-						<input onChange={e => setUsername(e.target.value)} />
-						password:
-						<input type={'password'} onChange={e => setPass(e.target.value)} />
-						<button className={style.loginButton} onClick={handleLoginSubmit}>Login</button>
+						<div className={formStyles.inputField}>
+							username:
+							<input onChange={e => setUsername(e.target.value)} />
+						</div>
+						<div className={formStyles.inputField}>
+							password:
+							<input type={'password'} onChange={e => setPass(e.target.value)} />
+						</div>
+						<button className={formStyles.formButton} onClick={handleLoginSubmit}>Login</button>
 						<div className={style.loginError}>{loginError}</div>
 					</div>
 				</div> :

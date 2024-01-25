@@ -22,7 +22,7 @@ export const Comment: React.FC<CommentProps> = ({ comment }) => {
 				</div>
 				<div className={style.dateContainer}>
 					<p>{post_date.toString()}</p>
-					<p>{comment.id}</p>
+					{/* <p>{comment.id}</p> */}
 				</div>
 			</div>
 		</>

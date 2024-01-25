@@ -29,7 +29,7 @@ export const CommentsBox: React.FC<CommentsBoxProps> = ({ id }) => {
 	return (
 		<>
 			{loggedInUser !== "default" &&
-				<NewCommentForm id={id} onSubmit={updateCommentsFromApi} setComments={setComments} />
+					<NewCommentForm id={id} onSubmit={updateCommentsFromApi} setComments={setComments} />
 			}
 			{comments.length > 0 &&
 				<div className={style.commentsContainer}>

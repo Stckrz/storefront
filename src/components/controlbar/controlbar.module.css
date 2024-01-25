@@ -21,6 +21,9 @@
 
 .loginContainer{
 	display: flex;
+	gap: 5px;
+	align-items: center;
+	justify-content: center;
 	width: 100%;
 	margin-right: 5px;
 	margin-left: 5px;
