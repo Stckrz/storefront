@@ -51,7 +51,7 @@ export async function sendComment(id: string, author: string, body: string, rati
 
 
 ///////////////////////////////////////////////
-export async function sendCommentWithToken(id: string, author: string, body: string, rating: number, token: string){
+export async function sendCommentWithToken(id: string, author: string, body: string, rating: number, token: string) {
 	const date = new Date()
 	const newComment: IComment = {
 		id: null,
@@ -62,9 +62,9 @@ export async function sendCommentWithToken(id: string, author: string, body: str
 		created_on: date.toString(),
 		active: true,
 	}
-	try{
-		const response = await fetch (`http://127.0.0.1:8000/sale-items/SaleItem/${id}/comments`, {
-			headers: {"Content-Type": 'application/json', "Authorization": `Bearer ${token}`},
+	try {
+		const response = await fetch(`http://127.0.0.1:8000/sale-items/SaleItem/${id}/comments`, {
+			headers: { "Content-Type": 'application/json', "Authorization": `Bearer ${token}` },
 			method: 'POST',
 			body: JSON.stringify(newComment)
 
@@ -73,7 +73,8 @@ export async function sendCommentWithToken(id: string, author: string, body: str
 		console.log(data);
 
 
-	}catch (error) {console.log(error);
+	} catch (error) {
+		console.log(error);
 	}
 
 
@@ -103,8 +104,8 @@ export async function sendAuth(sendData: IRegister) {
 			body: JSON.stringify(sendData)
 		})
 		const data = await response.json()
-		console.log(data)
-		return data
+			console.log(data)
+			return data
 	} catch (error) { console.log(error) }
 }
 

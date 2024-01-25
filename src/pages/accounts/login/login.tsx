@@ -12,29 +12,39 @@ export const UserLogin: React.FC = () => {
 
 	const [loginError, setLoginError] = useState<any>("")
 
-	const {setLoggedInUser} = useContext(LoggedInUser)
+	const { loggedInUser, setLoggedInUser } = useContext(LoggedInUser)
 
-	async function handleLoginSubmit(){
+	async function handleLoginSubmit() {
 		const userData = {
 			"username": username,
 			"password": pass,
 		}
 		let a = await sendLogin(userData)
-		a ? setLoginError(a) : setLoginError("")
-		a &&
-		setLoggedInUser(a.user_name)
+		a.non_field_errors 
+			?
+			setLoginError(a.non_field_errors[0])
+			:
+			setLoggedInUser(a.user_name)
 	}
 
 
 	return (
 		<>
-			<div className={style.loginFormContainer}>
-				username:
-				<input onChange={e => setUsername(e.target.value)} />
-				pass:
-				<input onChange={e => setPass(e.target.value)} />
-				<button onClick={handleLoginSubmit}>Login</button>
-			</div>
+			{loggedInUser === 'default' ?
+				<div className={style.loginFormContainer}>
+					<div className={style.loginWrap}>
+						username:
+						<input onChange={e => setUsername(e.target.value)} />
+						password:
+						<input type={'password'} onChange={e => setPass(e.target.value)} />
+						<button className={style.loginButton} onClick={handleLoginSubmit}>Login</button>
+						<div className={style.loginError}>{loginError}</div>
+					</div>
+				</div> :
+				<div>
+					Currently logged in as {loggedInUser}
+				</div>
+			}
 		</>
 	)
 }

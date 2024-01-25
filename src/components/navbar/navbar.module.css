@@ -146,6 +146,11 @@
 	}
 }
 
+.controlBarContainer{
+	display: flex;
+	justify-content: flex-end;
+	width: 50%;
+}
 
 
 

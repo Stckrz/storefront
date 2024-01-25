@@ -1,7 +1,9 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import style from './register.module.css';
 import { sendAuth } from 'library/apifunctions';
+
+import { LoggedInUser } from 'pages/layout/layout';
 
 
 export const RegisterUser: React.FC = () => {
@@ -12,6 +14,9 @@ export const RegisterUser: React.FC = () => {
 
 	const [registerError, setRegisterError] = useState<any>("")
 
+	const { loggedInUser, setLoggedInUser } = useContext(LoggedInUser)
+
+
 
 	async function handleRegisterSubmit() {
 		const userData = {
@@ -20,14 +25,18 @@ export const RegisterUser: React.FC = () => {
 			"password2": repeatpass,
 		}
 		let a = await sendAuth(userData)
-		a ?
-		setRegisterError(a)
-		: setRegisterError("")
+		console.log(a)
+		a === undefined && setLoggedInUser(username)
 	}
 
 
 	return (
 		<>
+			{
+			loggedInUser !== 'default'
+			?
+			<div>User created: {username}</div>
+			:
 			<div className={style.registerFormContainer}>
 				<div>Username:</div>
 				<input onChange={e => setUsername(e.target.value)} className={style.inputBox} />
@@ -39,11 +48,13 @@ export const RegisterUser: React.FC = () => {
 				<input onChange={e => setRepeatPass(e.target.value)} className={style.inputBox} />
 				<button onClick={handleRegisterSubmit}>Register</button>
 				{registerError !== "" &&
-					Object.keys(registerError).map((item:any) => {
-					return (<div>{ item }: {registerError[item]}</div>)
+					Object.keys(registerError).map((item: any) => {
+						return (<div>{item}: {registerError[item]}</div>)
 					})
 				}
 			</div>
+			}
+
 		</>
 	)
 }

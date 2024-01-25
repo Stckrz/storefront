@@ -23,6 +23,8 @@ import Search from './pages/search/search';
 
 import { RegisterUser } from './pages/accounts/register/register';
 import { UserLogin } from './pages/accounts/login/login';
+import { UserLogout } from './pages/accounts/logout/logout';
+
 
 
 const root = ReactDOM.createRoot(
@@ -55,6 +57,7 @@ root.render(
 
 					<Route path="register" element={<RegisterUser />} />
 					<Route path="login" element={<UserLogin />} />
+					<Route path="logout" element={<UserLogout />} />
 
 				</Route>
 			</Routes>

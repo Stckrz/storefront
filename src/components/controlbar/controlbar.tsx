@@ -36,16 +36,17 @@ export const ControlBar: React.FC = () => {
 				{loggedInUser === "default" ?
 					<div className={style.loginContainer}>
 						<Link to="register">
-							{/* <FaRegUser size={"1.5em"} /> */}
-							signup
+							Create an account
 						</Link>
-						<Link to="login">login</Link>
+						 -- 
+						<Link to="login">
+						Sign in
+						</Link>
 					</div>
-					:<div>{loggedInUser}<div onClick={()=>{setLoggedInUser("default")}}>logout</div></div>
+					:<div className={style.loginContainer}>{loggedInUser} -- <div onClick={()=>{setLoggedInUser("default")}}><Link to="logout">Sign out</Link></div></div>
 				}	
 				
 
-				<Link to="/"><IoHomeOutline size={"1.5em"} /></Link>
 				<div className={style.searchWrapper}>
 					<div onClick={() => { showSearchHandler() }}><IoSearchOutline size={"1.5em"} /></div>
 					{showSearch && <Search />}
