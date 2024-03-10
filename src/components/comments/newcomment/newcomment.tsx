@@ -4,11 +4,11 @@ import { IComment } from 'library/contextstuff';
 import style from './newcomment.module.css';
 import formStyles from 'library/formStyles.module.css';
 
-import { sendComment, fetchComments } from 'library/apifunctions';
+import { sendComment, fetchComments } from 'library/api/commentfetch';
 
 import { RatingStarsPicker } from 'components/star-rating/star-picker';
 
-import { LoggedInUser } from 'pages/layout/layout';
+import { useSelector } from 'react-redux';
 
 interface NewCommentFormProps {
 	id: string,
@@ -20,25 +20,21 @@ export const NewCommentForm: React.FC<NewCommentFormProps> = ({ id, onSubmit, se
 	const [showForm, setShowForm] = useState(false);
 	const [body, setBody] = useState<string>(" ");
 	const [rating, setRating] = useState<number>(0);
-	const { loggedInUser, setLoggedInUser } = useContext(LoggedInUser)
 
+	const user = useSelector((state: any) => state.user.value);
 
 	function handleBodyChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
 		setBody(e.target.value)
 	}
 
 	function sendCommentCallbackHandler() {
-		const date = new Date()
 		const newComment: IComment = {
-			id: null,
-			saleitem: parseInt(id),
-			author: loggedInUser,
+			author: user.username,
 			body: body,
 			rating: rating,
-			created_on: date.toString(),
-			active: true,
+			sale_item_id: id
 		}
-		sendComment(id, loggedInUser, body, rating)
+		sendComment(newComment)
 		fetchComments(id).then((item: any) => setComments(item))
 		onSubmit?.(newComment)
 
@@ -53,6 +49,7 @@ export const NewCommentForm: React.FC<NewCommentFormProps> = ({ id, onSubmit, se
 					</div>
 					<div className={style.bodyForm}>
 						Body:
+						{user.username}
 						<textarea className={style.inputBody} onChange={handleBodyChange} />
 					</div>
 					<div className={style.buttonBox} >

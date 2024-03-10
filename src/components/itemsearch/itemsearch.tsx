@@ -28,7 +28,7 @@ export const ItemSearch: React.FC = () => {
 							{
 								handleSearch().map((item: IProduct) => {
 								return (
-										<Link to={`/products/${item.id}`}>
+										<Link to={`/products/${item._id}`}>
 									<div className={ style.compressedItemContainer }>
 											<div className={ style.compressedItemImg }><img src={item.image_url} /></div>
 											<div className={ style.compressedItemDetails }>

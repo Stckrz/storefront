@@ -9,7 +9,7 @@ interface CommentProps {
 }
 
 export const Comment: React.FC<CommentProps> = ({ comment }) => {
-	const post_date = new Date(comment.created_on).toLocaleDateString()
+	const parsedDate = new Date(comment.created_on!)
 	return (
 		<>
 			<div className={style.commentWrapper}>
@@ -21,8 +21,7 @@ export const Comment: React.FC<CommentProps> = ({ comment }) => {
 					<p className={style.commentBody} >{comment.body}</p>
 				</div>
 				<div className={style.dateContainer}>
-					<p>{post_date.toString()}</p>
-					{/* <p>{comment.id}</p> */}
+					<p>{parsedDate.toLocaleDateString()}</p>
 				</div>
 			</div>
 		</>

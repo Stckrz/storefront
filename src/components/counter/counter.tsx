@@ -18,9 +18,9 @@ export const Counter: React.FC<CounterProps> = ({ cartItem, count, setCount }) =
 	}
 
 	function decrementHandler(){
-		cartItem.quantity > 0 &&
-		setCart(cart.map((item) => cartItem.cartId === item.cartId ? {...item, quantity: item.quantity - 1}:item))
-		setCount(count - 1);
+		// cartItem.quantity > 0 &&
+		// setCart(cart.map((item) => cartItem.cartId === item.cartId ? {...item, quantity: item.quantity - 1}:item))
+		// setCount(count - 1);
 	}
 
 	useEffect(()=>{},[count])

@@ -1,63 +1,56 @@
-import React from 'react';
-import { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
-import { CartContents } from 'pages/layout/layout';
-import { ItemsDatabase } from 'pages/layout/layout';
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { IProduct, } from 'library/contextstuff';
-import { useNavigate } from 'react-router-dom';
 
 import { useViewport } from 'hooks/useViewport';
 import { Dropdown } from 'components/dropdown/dropdown';
 import { CommentsBox } from 'components/comments/commentsbox';
-
-import style from './product-page-view.module.css';
-import { Counter } from 'components/counter/counter';
 import { IoArrowBack } from 'react-icons/io5'
 
+import style from './product-page-view.module.css';
 
+import { fetchItemById } from 'library/api/saleitemfetch';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { addCartItem } from '../../redux/slices/cartslice';
 
 
 export const PageView: React.FC = () => {
 	const { id } = useParams();
-	const { cart, setCart, idcount, setidcount } = useContext(CartContents)
-	const { data } = useContext(ItemsDatabase);
-	const [count, setCount] = useState<number>(1);
 	const [product, setProduct] = useState<IProduct>();
 
 	const { width } = useViewport();
+
+	const dispatch = useDispatch()
+	const cart = useSelector((state: any) => state.cart);
 
 	const navigate = useNavigate();
 	const goBack = () => {
 		navigate(-1);
 	}
 
-	const result = cart.find(({ title }) => title === product?.name)
-
 	function addCartClickHandler(item: IProduct) {
-		if (typeof result === "undefined") {
-			cart.push({
+		dispatch(addCartItem(
+			{
 				title: item.name,
-				cartId: idcount,
-				id: item.id,
+				id: item._id,
 				price: item.price,
-				quantity: count,
+				quantity: 1,
 				image: item.image_url,
 				category: item.category
-			})
-			setidcount(idcount + 1)
-		} else {
-			setCart(cart.map((cartitem) => cartitem.title === item.name ? { ...cartitem, quantity: cartitem.quantity + count } : cartitem))
-		}
+			}
+		))
 	}
 
-	function findProduct(){
-		data &&
-		setProduct(data.find((item) => item.id.toString() === id))
+	async function findProduct() {
+		id &&
+			setProduct(await fetchItemById(id))
 	}
 
 	useEffect(() => {
 		findProduct()
-	}, [cart, count, data])
+		console.log(cart)
+	}, [])
 
 	if (!id) {
 		return null
@@ -76,15 +69,13 @@ export const PageView: React.FC = () => {
 					}
 					<div className={style.mainBox}>
 						<div className={style.productSpotlight}>
-							<div className={style.productPageImgContainer}><img src={product.image_url} /></div>
+							<div className={style.productPageImgContainer}><img src={product.image_url} alt={"product"} /></div>
 						</div>
 						<div className={style.productDetails}>
 							<div className={style.buyingOptions}>
 								<div className={style.productPageItemName}>{product.name}</div>
 								<div className={style.productPageItemPrice}>{Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price)}</div>
 								<div className={style.productPageCounter}>
-									{/* {count} */}
-									{/* <Counter cartItem={product} count={count} setCount={setCount} /> */}
 								</div>
 							</div>
 							<div className={style.cartButtonContainer}>
@@ -96,9 +87,7 @@ export const PageView: React.FC = () => {
 						<div>
 						</div>
 					</div>
-					{/* <div className={style.comments}> */}
-						<CommentsBox id={id} />
-					{/* </div> */}
+					<CommentsBox id={id} />
 				</div>
 			}
 		</>

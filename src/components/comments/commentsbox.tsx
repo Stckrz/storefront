@@ -1,20 +1,22 @@
 import React from 'react';
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import { IComment } from 'library/contextstuff';
 import { Comment } from 'components/comments/comment/comment';
 import { NewCommentForm } from 'components/comments/newcomment/newcomment';
 import style from './commentsbox.module.css';
 
-import { fetchComments } from 'library/apifunctions';
-import { LoggedInUser } from 'pages/layout/layout';
+import { fetchComments } from 'library/api/commentfetch';
+
+import { useSelector } from 'react-redux';
 
 interface CommentsBoxProps {
 	id: string
 }
 
 export const CommentsBox: React.FC<CommentsBoxProps> = ({ id }) => {
-	const { loggedInUser } = useContext(LoggedInUser)
+	const user = useSelector((state: any) => state.user.value)
 	const [comments, setComments] = useState<IComment[]>([])
+	const [keynum, setKeyNum] = useState(0)
 
 	async function updateCommentsFromApi() {
 		setComments(
@@ -28,14 +30,14 @@ export const CommentsBox: React.FC<CommentsBoxProps> = ({ id }) => {
 
 	return (
 		<>
-			{loggedInUser !== "default" &&
-					<NewCommentForm id={id} onSubmit={updateCommentsFromApi} setComments={setComments} />
+			{user.username &&
+				<NewCommentForm id={id} onSubmit={updateCommentsFromApi} setComments={setComments} />
 			}
 			{comments.length > 0 &&
 				<div className={style.commentsContainer}>
 					{comments.map((comment) => {
 						return (
-							<Comment comment={comment} />
+							<Comment key={comment._id} comment={comment} />
 						)
 					})}
 				</div>

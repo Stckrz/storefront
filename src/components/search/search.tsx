@@ -35,7 +35,7 @@ export const Search: React.FC = () => {
 								handleSearch().map((item: IProduct) => {
 									return (
 											<div className={style.compressedItemContainer}>
-											<Link to={`/products/${item.id}`}>
+											<Link to={`/products/${item._id}`}>
 												<div className={style.compressedItemImg}><img src={item.image_url} /></div>
 												<div className={style.compressedItemDetails}>
 													<div className={style.compressedItemTitle}>{(item.name).toUpperCase()}</div>

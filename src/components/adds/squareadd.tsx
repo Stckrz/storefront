@@ -1,6 +1,6 @@
 import style from './squareadd.module.css';
 import { useState, useEffect } from 'react';
-import { fetchAddUrl } from 'library/apifunctions';
+import { fetchAddUrl } from 'library/api/addfetch';
 
 interface IAdvertisement {
 	name: string,
@@ -17,7 +17,7 @@ export const SquareAdd: React.FC = () => {
 	}
 
 	useEffect(() => {
-		fetchAddUrl().then((item) => setAddUrls(item))
+		// fetchAddUrl().then((item) => setAddUrls(item))
 	}, [])
 	return (
 		<>

@@ -1,6 +1,5 @@
 export interface ICartItem {
 	title: string,
-	cartId: number,
 	id: number,
 	price: number,
 	quantity: number,
@@ -8,12 +7,12 @@ export interface ICartItem {
 	category: string
 }
 
+
 //the initial value for our carts contents
 export const cartInitial: IContextInterface = {
 	cart: [
 		{
 			title: "",
-			cartId: 0,
 			id: 0,
 			price: 0,
 			quantity: 0,
@@ -37,7 +36,7 @@ export interface IContextInterface {
 
 
 export interface IProduct {
-	id: number,
+	_id: number,
 	name: string,
 	price: number,
 	description: string,
@@ -52,7 +51,7 @@ export interface IProduct {
 export const dataInitial: IDataContextInterface = {
 	data: [
 		{
-			id: 0,
+			_id: 0,
 			name: "",
 			price: 0,
 			description: "",
@@ -73,15 +72,13 @@ export interface IDataContextInterface {
 
 
 export interface IComment {
-	id: number | null
-	saleitem: number,
+	_id?: string,
 	author: string,
 	body: string,
 	rating: number,
-	created_on: string,
-	active: boolean,
+	created_on?: string,
+	sale_item_id: string | null
 }
-
 
 export interface ILogin{
 	username: string,
@@ -90,18 +87,11 @@ export interface ILogin{
 
 export interface IRegister{
 	username: string,
-	password1: string,
-	password2: string,
-
+	password: string,
+	// password2: string,
 }
 
-export const loggedInUserInitial = {
-	loggedInUser: "",
-	setLoggedInUser: () => {}
-}
-
-export interface ILoggedInUserInterface{
-	loggedInUser: string,
-	setLoggedInUser: (loggedInUser: string) => void
-
+export const userInitial = {
+	username: "",
+	token: ""
 }

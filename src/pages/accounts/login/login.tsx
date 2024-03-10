@@ -1,11 +1,11 @@
 import React from 'react';
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import style from './login.module.css';
 import formStyles from 'library/formStyles.module.css';
-import { sendLogin } from 'library/apifunctions';
+import { sendLogin } from 'library/api/userfetch';
 
-
-import { LoggedInUser } from 'pages/layout/layout';
+import { useSelector, useDispatch } from 'react-redux';
+import { setUser } from '../../../redux/slices/userslice';
 
 export const UserLogin: React.FC = () => {
 	const [username, setUsername] = useState<string>("")
@@ -13,7 +13,8 @@ export const UserLogin: React.FC = () => {
 
 	const [loginError, setLoginError] = useState<any>("")
 
-	const { loggedInUser, setLoggedInUser } = useContext(LoggedInUser)
+	const user = useSelector((state: any) => state.user.value);
+	const dispatch = useDispatch();
 
 	async function handleLoginSubmit() {
 		const userData = {
@@ -21,17 +22,18 @@ export const UserLogin: React.FC = () => {
 			"password": pass,
 		}
 		let a = await sendLogin(userData)
-		a.non_field_errors
-			?
-			setLoginError(a.non_field_errors[0])
-			:
-			setLoggedInUser(a.user_name)
+		if (a.token) {
+			dispatch(setUser(a))
+			setUsername("");
+			setPass("")
+		} else {
+			setLoginError("incorrect login credentials")
+		}
 	}
-
 
 	return (
 		<>
-			{loggedInUser === 'default' ?
+			{!user.username ?
 				<div className={style.loginFormContainer}>
 					<div className={style.loginWrap}>
 						<div className={formStyles.inputField}>
@@ -46,11 +48,10 @@ export const UserLogin: React.FC = () => {
 						<div className={style.loginError}>{loginError}</div>
 					</div>
 				</div> :
-				<div>
-					Currently logged in as {loggedInUser}
+				<div className={style.loginConfirmation}>
+					Currently logged in as {user.username}
 				</div>
 			}
 		</>
 	)
 }
-

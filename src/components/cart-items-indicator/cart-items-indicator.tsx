@@ -1,13 +1,11 @@
 import React from 'react';
 import style from './cart-items-indicator.module.css';
-import { useState, useEffect, useContext } from 'react';
-import { CartContents } from 'pages/layout/layout';
-
-
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 
 export const CartItemsIndicator: React.FC = () => {
-	const { cart } = useContext(CartContents)
+	const cart = useSelector((state: any) => state.cart).arr;
 	const [ keyvalue, setKeyValue ] = useState(0)
 
 	function keyChangeHandler() {

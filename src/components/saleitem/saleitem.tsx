@@ -14,13 +14,13 @@ export const SaleItem: React.FC<SaleItemProps> = ({ saleitem }) => {
 		<>
 			<div className={ style.itemWrapper }>
 				<div className={ style.imgContainer }>
-					<Link to={`/products/${saleitem.id}`}>
+					<Link to={`/products/${saleitem._id}`}>
 						<img src={saleitem.image_url} />
 					</Link>
 				</div>
 				<div className={ style.itemInfoContainer }>
 					<div className={ style.itemName }>
-						<Link to={`/products/${saleitem.id}`}>
+						<Link to={`/products/${saleitem._id}`}>
 							{saleitem.name}
 						</Link>
 					</div>

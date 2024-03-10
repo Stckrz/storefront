@@ -1,11 +1,11 @@
 import React from 'react';
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import style from './register.module.css';
 import formStyle from 'library/formStyles.module.css';
-import { sendAuth } from 'library/apifunctions';
+import { sendAuth } from 'library/api/userfetch';
 
-import { LoggedInUser } from 'pages/layout/layout';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { setUser } from '../../../redux/slices/userslice';
 
 export const RegisterUser: React.FC = () => {
 	const [username, setUsername] = useState<string>("")
@@ -15,25 +15,35 @@ export const RegisterUser: React.FC = () => {
 
 	const [registerError, setRegisterError] = useState<any>("")
 
-	const { loggedInUser, setLoggedInUser } = useContext(LoggedInUser)
+	const dispatch = useDispatch();
+	const user = useSelector((state: any) => state.user.value);
 
+	const passcheck = (pass1: string, pass2: string) => {
+		if (pass1 !== pass2) {
+			setRegisterError("passwords do not match")
+		} else if (pass1.length < 5) {
+			setRegisterError("password too short")
+		} else {
+			handleRegisterSubmit()
+		}
+
+	}
 
 	async function handleRegisterSubmit() {
 		const userData = {
 			"username": username,
-			"password1": pass,
+			"password": pass,
 			"password2": repeatpass,
 		}
 		let a = await sendAuth(userData)
-		console.log(a)
-		a === undefined && setLoggedInUser(username)
+		a.username ?
+			dispatch(setUser(a))
+			: setRegisterError("username already exists")
 	}
-
 
 	return (
 		<>
-			{loggedInUser === 'default'
-				?
+			{!user.username ?
 				<div className={style.registerFormContainer}>
 					<div className={style.registerWrap}>
 						<div className={formStyle.inputField}>Username:
@@ -45,16 +55,12 @@ export const RegisterUser: React.FC = () => {
 						<div className={formStyle.inputField} >Repeat Password:
 							<input onChange={e => setRepeatPass(e.target.value)} className={style.inputBox} />
 						</div>
-						<button className={formStyle.formButton} onClick={handleRegisterSubmit}>Register</button>
-						{registerError !== "" &&
-							Object.keys(registerError).map((item: any) => {
-								return (<div>{item}: {registerError[item]}</div>)
-							})
-						}
+						<button className={formStyle.formButton} onClick={() => passcheck(pass, repeatpass)}>Register</button>
+						<div>{registerError}</div>
 					</div>
 				</div>
 				:
-				<div>User created: {username}</div>
+				<div className={style.registerConfirmation}>User created: {user.username}</div>
 			}
 		</>
 	)

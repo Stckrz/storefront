@@ -1,38 +1,30 @@
 import React from 'react';
-
-import { useCallback, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { SaleItem } from 'components/saleitem/saleitem';
 import { IProduct } from 'library/contextstuff';
 import { SquareAdd } from 'components/adds/squareadd';
 import style from './items-renderer.module.css';
 import { useViewport } from 'hooks/useViewport';
 
-import {fetchAllItems} from 'library/apifunctions';
+import { fetchItemsByCategory } from 'library/api/saleitemfetch';
 
-interface ItemRendererProps {
-	categoryName: string
-}
-
-export const ItemsRenderer: React.FC<ItemRendererProps> = ({ categoryName }) => {
+export const ItemsRenderer: React.FC = () => {
+	let { category } = useParams()
 	const [categoryList, setCategoryList] = useState([])
-	const [data, setData] = useState([]);
 	const { width } = useViewport();
 
 
-	function getCategoryItems() {
-		let temparray: any = []
-		data.map((item: IProduct) => {
-			item.category === categoryName && temparray.push(item)
-		})
-		setCategoryList(temparray)
+	function categoryFetch(category: string) {
+			fetchItemsByCategory(category).then(
+				(items) => setCategoryList(items)
+			)
 	}
 
 	useEffect(() => {
-		fetchAllItems().then(
-		(items) => setData(items)
-		)
-		getCategoryItems()
-	}, [data.length])
+		category !== undefined &&
+			categoryFetch(category)
+	}, [category])
 
 	return (
 		<>
@@ -40,7 +32,7 @@ export const ItemsRenderer: React.FC<ItemRendererProps> = ({ categoryName }) => 
 				<div className={style.itemsRendererPageWrapper}>
 					<div className={style.itemsField}>
 						<div className={style.categoryName}>
-							{categoryName}
+							{category}
 						</div>
 						<div className={style.itemCount}>{`${categoryList.length} Products`}</div>
 						<div className={style.itemsContainer} >
@@ -55,7 +47,6 @@ export const ItemsRenderer: React.FC<ItemRendererProps> = ({ categoryName }) => 
 					</div>
 					<div className={style.squarePageAdd}><SquareAdd /></div>
 				</div>
-
 			}
 		</>
 	)
