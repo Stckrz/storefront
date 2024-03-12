@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addCartItem } from '../../redux/slices/cartslice';
 
 
+
 export const PageView: React.FC = () => {
 	const { id } = useParams();
 	const [product, setProduct] = useState<IProduct>();
@@ -27,6 +28,8 @@ export const PageView: React.FC = () => {
 	const goBack = () => {
 		navigate(-1);
 	}
+	// const imgurl = product?.image_url && require('library/photos/womens_shoes/womens_shoes6.png')
+	const imgurl = product?.image_url && require(product.image_url)
 
 	function addCartClickHandler(item: IProduct) {
 		dispatch(addCartItem(
@@ -67,7 +70,8 @@ export const PageView: React.FC = () => {
 					}
 					<div className={style.mainBox}>
 						<div className={style.productSpotlight}>
-							<div className={style.productPageImgContainer}><img src={product.image_url} alt={"product"} /></div>
+							<div className={style.productPageImgContainer}><img src={imgurl} alt={"product"} /></div>
+							{/* <div className={style.productPageImgContainer}>{`'${product.image_url}'`}<img src={require("library/photos/sweaters/sweaters1.png")} alt={"product"} /></div> */}
 						</div>
 						<div className={style.productDetails}>
 							<div className={style.buyingOptions}>
