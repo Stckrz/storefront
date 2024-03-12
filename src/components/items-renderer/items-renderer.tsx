@@ -16,9 +16,9 @@ export const ItemsRenderer: React.FC = () => {
 
 
 	function categoryFetch(category: string) {
-			fetchItemsByCategory(category).then(
-				(items) => setCategoryList(items)
-			)
+		fetchItemsByCategory(category).then(
+			(items) => setCategoryList(items)
+		)
 	}
 
 	useEffect(() => {
@@ -37,9 +37,9 @@ export const ItemsRenderer: React.FC = () => {
 						<div className={style.itemCount}>{`${categoryList.length} Products`}</div>
 						<div className={style.itemsContainer} >
 							{
-								categoryList.map((item) => {
+								categoryList.map((item: IProduct) => {
 									return (
-										<SaleItem saleitem={item} />
+										<SaleItem key={item._id} saleitem={item} />
 									)
 								})
 							}

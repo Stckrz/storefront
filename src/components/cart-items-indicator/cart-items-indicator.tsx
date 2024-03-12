@@ -3,7 +3,6 @@ import style from './cart-items-indicator.module.css';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-
 export const CartItemsIndicator: React.FC = () => {
 	const cart = useSelector((state: any) => state.cart).arr;
 	const [ keyvalue, setKeyValue ] = useState(0)

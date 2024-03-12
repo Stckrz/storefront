@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import style from './cart-panel.module.css';
 
 import { CompressedItem } from 'components/compressed-item/compressed-item';
@@ -7,10 +7,15 @@ import { CartTotal } from 'components/cart-total/cart-total';
 
 import { ICartItem } from 'library/contextstuff';
 
+import { removeCartItem } from '../../redux/slices/cartslice';
 
 export const Cart: React.FC = () => {
 	const cart = useSelector((state: any) => state.cart).arr;
+	const dispatch = useDispatch()
 
+	const deleteCartItem = (cartid: ICartItem) => {
+		dispatch(removeCartItem(cartid))
+	}
 	useEffect(() => {
 	}, [cart])
 
@@ -24,7 +29,8 @@ export const Cart: React.FC = () => {
 								return (
 									<div className={style.cartItemContainer}>
 										<CompressedItem item={{ id: item.id, title: item.title, price: item.price, quantity: item.quantity, image: item.image, category: item.category }} />
-										{/* <div className={style.deleteText} onClick={() => { deleteCartItem(item) }}>Delete</div> */}
+										<div>{item.quantity}</div>
+										<div className={style.deleteText} onClick={() => { deleteCartItem(item) }}>Delete</div>
 									</div>
 								)
 							})

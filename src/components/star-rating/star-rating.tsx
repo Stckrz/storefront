@@ -28,7 +28,7 @@ export const RatingStars: React.FC<RatingStarsProps> = ({ rating }) => {
 			<div className={style.starContainer}>
 				{
 					starArray.map((item) => {
-						return (item)
+						return (<div>{item}</div>)
 					})
 				}
 			</div>

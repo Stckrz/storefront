@@ -22,7 +22,6 @@ export const PageView: React.FC = () => {
 	const { width } = useViewport();
 
 	const dispatch = useDispatch()
-	const cart = useSelector((state: any) => state.cart);
 
 	const navigate = useNavigate();
 	const goBack = () => {
@@ -49,7 +48,6 @@ export const PageView: React.FC = () => {
 
 	useEffect(() => {
 		findProduct()
-		console.log(cart)
 	}, [])
 
 	if (!id) {

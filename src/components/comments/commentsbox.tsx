@@ -16,7 +16,6 @@ interface CommentsBoxProps {
 export const CommentsBox: React.FC<CommentsBoxProps> = ({ id }) => {
 	const user = useSelector((state: any) => state.user.value)
 	const [comments, setComments] = useState<IComment[]>([])
-	const [keynum, setKeyNum] = useState(0)
 
 	async function updateCommentsFromApi() {
 		setComments(

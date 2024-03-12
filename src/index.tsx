@@ -36,7 +36,6 @@ root.render(
 						<Route path="register" element={<RegisterUser />} />
 						<Route path="login" element={<UserLogin />} />
 						<Route path="logout" element={<UserLogout />} />
-
 					</Route>
 				</Routes>
 			</Router>

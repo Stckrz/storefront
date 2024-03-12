@@ -1,9 +1,9 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import style from './controlbar.module.css';
 import { Search } from 'components/search/search';
 import { CartItemsIndicator } from 'components/cart-items-indicator/cart-items-indicator';
 import { Link } from 'react-router-dom';
+
 import { IoSearchOutline } from 'react-icons/io5';
 import { IoBagHandleOutline } from 'react-icons/io5';
 import { FaCircle } from "react-icons/fa6";
@@ -45,14 +45,11 @@ export const ControlBar: React.FC = () => {
 					</div>
 					:
 					<div className={style.loginContainer}>
-
 						<div>{user.username}</div>
 						<div><FaCircle size={'0.5em'} /></div>
 						<div onClick={() => { dispatch(setUser("")) }}><Link to="logout">Sign out</Link></div>
 					</div>
-
 				}
-
 
 				<div className={style.searchWrapper}>
 					<div onClick={() => { showSearchHandler() }}><IoSearchOutline size={"1.5em"} /></div>

@@ -1,29 +1,22 @@
-import React from 'react';
-import { useEffect, useContext } from 'react';
+import { useDispatch } from 'react-redux';
+import { incrementCartQuantity, decrementCartQuantity } from '../../redux/slices/cartslice';
+
 import './counter.css';
-import { CartContents } from 'pages/layout/layout';
 import { ICartItem } from 'library/contextstuff';
 
 interface CounterProps{
-	count: number,
-	setCount: Function,
 	cartItem: ICartItem
 }
 
-export const Counter: React.FC<CounterProps> = ({ cartItem, count, setCount }) => {
-	const {cart, setCart} = useContext(CartContents)
+export const Counter: React.FC<CounterProps> = ({ cartItem }) => {
+	const dispatch = useDispatch();
+
 	function incrementHandler(){
-		setCount(count + 1)
-		setCart(cart.map((item) => cartItem.title === item.title ? {...item, quantity: item.quantity + 1}:item))
+		dispatch(incrementCartQuantity(cartItem))
 	}
-
 	function decrementHandler(){
-		// cartItem.quantity > 0 &&
-		// setCart(cart.map((item) => cartItem.cartId === item.cartId ? {...item, quantity: item.quantity - 1}:item))
-		// setCount(count - 1);
+		dispatch(decrementCartQuantity(cartItem))
 	}
-
-	useEffect(()=>{},[count])
 
 	return (
 		<>
