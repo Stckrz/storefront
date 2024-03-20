@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export const BigBanner: React.FC = () => {
 	return (
 		<>
-			<Link to={"/tshirts"}>
+			<Link to={"/category/tshirts"}>
 				<div className={style.bigbannercontainer}>
 					<div className={style.bigbannertext}>
 						<p>TSHIRTS</p>
@@ -16,7 +16,7 @@ export const BigBanner: React.FC = () => {
 						<img src={'./shirtPic.png'} />
 					</div>
 					<img className={style.overlayimg} src={'./OIP.jpg'} />
-					<p className={style.shoplink}><Link to={"/tshirts"}>shop now</Link></p>
+					<p className={style.shoplink}><Link to={"/category/tshirts"}>shop now</Link></p>
 				</div>
 			</Link>
 		</>

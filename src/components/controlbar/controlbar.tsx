@@ -13,12 +13,18 @@ import { Cart } from 'components/cart/cart';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../redux/slices/userslice';
 
+
+import { useClickOutside } from 'hooks/useClickOutside';
+import { useRef } from 'react';
+
 export const ControlBar: React.FC = () => {
 	const [showCart, setShowCart] = useState(false)
 	const [showSearch, setShowSearch] = useState(false)
 	const user = useSelector((state: any) => state.user.value);
 	const dispatch = useDispatch();
 
+	const searchWrapperRef = useRef(null)
+	const cartWrapperRef = useRef(null)
 
 	function showCartHandler() {
 		setShowSearch(false)
@@ -29,6 +35,8 @@ export const ControlBar: React.FC = () => {
 		setShowCart(false)
 		setShowSearch(!showSearch)
 	}
+	useClickOutside(searchWrapperRef, ()=>{setShowSearch(false)})
+	useClickOutside(cartWrapperRef, ()=>{setShowCart(false)})
 
 	return (
 		<>
@@ -36,11 +44,11 @@ export const ControlBar: React.FC = () => {
 				{!user.username ?
 					<div className={style.loginContainer}>
 						<Link to="register">
-							Create an account
+							Register
 						</Link>
 						<FaCircle size={'0.5em'} />
 						<Link to="login">
-							Sign in
+							Login
 						</Link>
 					</div>
 					:
@@ -52,13 +60,13 @@ export const ControlBar: React.FC = () => {
 				}
 
 				<div className={style.searchWrapper}>
-					<div onClick={() => { showSearchHandler() }}><IoSearchOutline size={"1.5em"} /></div>
+					<div ref={searchWrapperRef} onClick={() => { showSearchHandler() }}><IoSearchOutline size={"1.5em"} /></div>
 					{showSearch && <Search />}
 				</div>
 				<div className={style.cartIconContainer}>
 					<CartItemsIndicator />
 					<div className={style.cartIcon}>
-						<div onClick={() => { showCartHandler() }}><IoBagHandleOutline size={"1.5em"} /></div>
+						<div ref={cartWrapperRef} onClick={() => { showCartHandler() }}><IoBagHandleOutline size={"1.5em"} /></div>
 						{showCart && <Cart />}
 					</div>
 				</div>

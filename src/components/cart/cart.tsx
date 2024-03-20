@@ -9,9 +9,12 @@ import { ICartItem } from 'library/contextstuff';
 
 import { removeCartItem } from '../../redux/slices/cartslice';
 
+
 export const Cart: React.FC = () => {
+
 	const cart = useSelector((state: any) => state.cart).arr;
 	const dispatch = useDispatch()
+
 
 	const deleteCartItem = (cartid: ICartItem) => {
 		dispatch(removeCartItem(cartid))

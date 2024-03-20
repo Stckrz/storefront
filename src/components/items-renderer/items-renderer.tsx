@@ -5,14 +5,14 @@ import { SaleItem } from 'components/saleitem/saleitem';
 import { IProduct } from 'library/contextstuff';
 import { SquareAdd } from 'components/adds/squareadd';
 import style from './items-renderer.module.css';
-import { useViewport } from 'hooks/useViewport';
+// import { useViewport } from 'hooks/useViewport';
 
 import { fetchItemsByCategory } from 'library/api/saleitemfetch';
 
 export const ItemsRenderer: React.FC = () => {
 	let { category } = useParams()
 	const [categoryList, setCategoryList] = useState([])
-	const { width } = useViewport();
+	// const { width } = useViewport();
 
 
 	function categoryFetch(category: string) {

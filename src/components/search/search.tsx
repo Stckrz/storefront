@@ -1,15 +1,11 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useDebounce } from 'hooks/useDebounce';
 import style from './search.module.css';
 import { IProduct } from 'library/contextstuff';
 import { Link } from 'react-router-dom';
 
-import { CompressedItem } from 'components/compressed-item/compressed-item';
-
 import { fetchItemByString } from 'library/api/saleitemfetch';
-
-
 
 export const Search: React.FC = () => {
 
@@ -17,14 +13,13 @@ export const Search: React.FC = () => {
 	const debouncedValue = useDebounce(searchText, 200)
 	const [data, setData] = useState<IProduct[]>([])
 
+
 	function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
 		setSearchText(e.target.value.toLowerCase());
 	};
 
-
-	async function itemSearch(string: string) {
+	async function itemSearch() {
 		let searchdata = await fetchItemByString(debouncedValue);
-		console.log('searched')
 		if (searchdata && searchdata.length > 0) {
 			setData(searchdata)
 		} else {
@@ -32,11 +27,11 @@ export const Search: React.FC = () => {
 		}
 	}
 
-
 	useEffect(() => {
 		searchText !== "" &&
-			itemSearch(searchText)
+			itemSearch()
 	}, [debouncedValue])
+
 	return (
 		<>
 			<div className={style.searchbarContainer}>
@@ -50,7 +45,7 @@ export const Search: React.FC = () => {
 										item.name &&
 										<div key={item._id} className={style.compressedItemContainer}>
 											<Link to={`/products/${item._id}`}>
-												<div className={style.compressedItemImg}><img src={item.image_url} /></div>
+												<div className={style.compressedItemImg}><img src={item.image_url} alt={item.name}/></div>
 												<div className={style.compressedItemDetails}>
 													<div className={style.compressedItemTitle}>{(item.name).toUpperCase()}</div>
 													<div>{Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(item.price)}</div>
@@ -67,6 +62,4 @@ export const Search: React.FC = () => {
 			</div>
 		</>
 	)
-
-
 }

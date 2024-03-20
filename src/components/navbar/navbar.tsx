@@ -11,10 +11,10 @@ export const Navbar: React.FC = () => {
 	const [categoryLinks, setCategoryLinks] = useState([
 		{ name: "T-SHIRTS", pathname: "/category/tshirts", isActive: false },
 		{ name: "SWEATERS", pathname: "/category/sweaters", isActive: false },
-		{ name: "SKIRTS", pathname: "/category/skirt", isActive: false },
-		{ name: "PANTIES", pathname: "/category/womensUnderwear", isActive: false },
-		{ name: "CROPS", pathname: "/category/cropTops", isActive: false },
-		{ name: "HAIR ACCESSORIES", pathname: "/category/hairAccessories", isActive: false },
+		{ name: "SKIRTS", pathname: "/category/skirts", isActive: false },
+		{ name: "PANTIES", pathname: "/category/womens_underwear", isActive: false },
+		{ name: "CROPS", pathname: "/category/crop_tops", isActive: false },
+		{ name: "HAIR ACCESSORIES", pathname: "/category/hair_accessories", isActive: false },
 		{ name: "DRESSES", pathname: "/category/dresses", isActive: false },
 		{ name: "MENS", pathname: "/category/mens", isActive: false }
 	])
