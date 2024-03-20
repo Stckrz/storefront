@@ -1,23 +1,36 @@
-import React from 'react';
-import { useEffect, useState, useRef } from 'react';
-import { useDebounce } from 'hooks/useDebounce';
-import style from './search.module.css';
-import { IProduct } from 'library/contextstuff';
+import React, { SetStateAction, useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
+//styles
+import style from './search.module.css';
+
+//hooks
+import { useDebounce } from 'hooks/useDebounce';
+import { useClickOutside } from 'hooks/useClickOutside';
+
+//context
+import { IProduct } from 'library/contextstuff';
+
+//api
 import { fetchItemByString } from 'library/api/saleitemfetch';
 
-export const Search: React.FC = () => {
+interface SearchProps{
+	setShowSearch: React.Dispatch<SetStateAction<boolean>>
+}
 
+export const Search: React.FC<SearchProps> = ({ setShowSearch }) => {
+	const [data, setData] = useState<IProduct[]>([])
 	const [searchText, setSearchText] = useState<string>("");
 	const debouncedValue = useDebounce(searchText, 200)
-	const [data, setData] = useState<IProduct[]>([])
-
+	
+	//useRef stuff
+	const searchWrapperRef = useRef(null)
 
 	function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
 		setSearchText(e.target.value.toLowerCase());
 	};
 
+	//cart items fetch
 	async function itemSearch() {
 		let searchdata = await fetchItemByString(debouncedValue);
 		if (searchdata && searchdata.length > 0) {
@@ -32,9 +45,10 @@ export const Search: React.FC = () => {
 			itemSearch()
 	}, [debouncedValue])
 
+	useClickOutside(searchWrapperRef, ()=>{setShowSearch(false)})
 	return (
 		<>
-			<div className={style.searchbarContainer}>
+			<div ref={searchWrapperRef} className={style.searchbarContainer}>
 				<input onChange={handleChange} />
 				<div className={style.searchResultsContainer}>
 					{searchText !== "" &&
@@ -52,7 +66,6 @@ export const Search: React.FC = () => {
 												</div>
 											</Link>
 										</div>
-
 									)
 								})
 							}

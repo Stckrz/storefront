@@ -1,12 +1,10 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaStar, FaRegStar } from 'react-icons/fa';
 import style from './star-rating.module.css';
 
 interface RatingStarsProps {
 	rating: number
 }
-
 
 export const RatingStars: React.FC<RatingStarsProps> = ({ rating }) => {
 	const [starArray, setStarArray] = useState<any[]>([])

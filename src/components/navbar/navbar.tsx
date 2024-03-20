@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
+//styles
 import style from './navbar.module.css';
+
+//icons
 import { IoMenuOutline } from 'react-icons/io5';
 import { IoClose } from 'react-icons/io5';
 
-import { Link } from 'react-router-dom';
+//components
 import { ControlBar } from 'components/controlbar/controlbar';
+
+//hooks
 import { useViewport } from 'hooks/useViewport';
 
 export const Navbar: React.FC = () => {
@@ -21,6 +28,7 @@ export const Navbar: React.FC = () => {
 
 	const width = useViewport();
 
+	//visibility of mobile navbar 
 	const [navVisible, setNavVisible] = useState<boolean>(false)
 
 	function activeHandler(a: string) {
@@ -42,7 +50,6 @@ export const Navbar: React.FC = () => {
 								<IoMenuOutline size={"2em"} /> : <IoClose size={"2em"} />
 							}
 						</div>
-
 						{navVisible === true &&
 							<div className={ style.expandibleNavbar } >
 

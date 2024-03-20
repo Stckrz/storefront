@@ -1,14 +1,16 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import { FaStar, FaRegStar } from 'react-icons/fa';
+import React, { useState } from 'react';
+//styles
 import style from './star-picker.module.css';
+
+//icons
+import { FaStar, FaRegStar } from 'react-icons/fa';
 
 interface ratingStarsPickerProps {
 	setRating: (rating: number) => void,
 }
+
 export const RatingStarsPicker: React.FC<ratingStarsPickerProps> = ({ setRating }) => {
 	const [starArray, setStarArray] = useState<object[]>(Array(5).fill(<FaRegStar />))
-
 
 	function handleRatingClick(index: number) {
 		let starsCopy = [...starArray];
@@ -26,7 +28,6 @@ export const RatingStarsPicker: React.FC<ratingStarsPickerProps> = ({ setRating 
 			>{item}</div>)
 		})
 	}
-
 
 	return (
 		<>

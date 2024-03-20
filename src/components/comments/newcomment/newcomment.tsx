@@ -1,14 +1,18 @@
-import React from 'react';
-import { useState, useContext } from 'react';
-import { IComment } from 'library/contextstuff';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+
+//styles
 import style from './newcomment.module.css';
 import formStyles from 'library/formStyles.module.css';
 
+//context
+import { IComment } from 'library/contextstuff';
+
+//api
 import { sendComment, fetchComments } from 'library/api/commentfetch';
 
+//components
 import { RatingStarsPicker } from 'components/star-rating/star-picker';
-
-import { useSelector } from 'react-redux';
 
 interface NewCommentFormProps {
 	id: string,
@@ -21,6 +25,7 @@ export const NewCommentForm: React.FC<NewCommentFormProps> = ({ id, onSubmit, se
 	const [body, setBody] = useState<string>(" ");
 	const [rating, setRating] = useState<number>(0);
 
+	//redux
 	const user = useSelector((state: any) => state.user.value);
 
 	function handleBodyChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
@@ -37,13 +42,12 @@ export const NewCommentForm: React.FC<NewCommentFormProps> = ({ id, onSubmit, se
 		sendComment(newComment)
 		fetchComments(id).then((item: any) => setComments(item))
 		onSubmit?.(newComment)
-
 	}
 
 	return (
 		<>
-			{showForm ?
-				<div className={style.commentFormWrapper}>
+			{showForm
+				? <div className={style.commentFormWrapper}>
 					<div className={style.ratingForm} >Rating:
 						<RatingStarsPicker setRating={setRating} />
 					</div>
@@ -57,8 +61,7 @@ export const NewCommentForm: React.FC<NewCommentFormProps> = ({ id, onSubmit, se
 						<button className={formStyles.formButton} onClick={() => { setShowForm(!showForm) }}>cancel</button>
 					</div>
 				</div>
-				:
-				<div className={style.newCommentButtonBox} >
+				: <div className={style.newCommentButtonBox} >
 					<button className={formStyles.formButton} onClick={() => { setShowForm(!showForm) }}>add comment</button>
 				</div>
 			}

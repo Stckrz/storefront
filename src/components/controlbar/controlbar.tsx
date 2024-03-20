@@ -1,30 +1,33 @@
+//basic imports
 import React, { useState } from 'react';
-import style from './controlbar.module.css';
-import { Search } from 'components/search/search';
-import { CartItemsIndicator } from 'components/cart-items-indicator/cart-items-indicator';
 import { Link } from 'react-router-dom';
 
+//redux imports
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser } from '../../redux/slices/userslice';
+
+//stylesheet imports
+import style from './controlbar.module.css';
+
+//component imports
+import { Search } from 'components/search/search';
+import { CartItemsIndicator } from 'components/cart-items-indicator/cart-items-indicator';
+import { Cart } from 'components/cart/cart';
+
+//icons
 import { IoSearchOutline } from 'react-icons/io5';
 import { IoBagHandleOutline } from 'react-icons/io5';
 import { FaCircle } from "react-icons/fa6";
 
-import { Cart } from 'components/cart/cart';
-
-import { useDispatch, useSelector } from 'react-redux';
-import { setUser } from '../../redux/slices/userslice';
-
-
-import { useClickOutside } from 'hooks/useClickOutside';
-import { useRef } from 'react';
 
 export const ControlBar: React.FC = () => {
-	const [showCart, setShowCart] = useState(false)
-	const [showSearch, setShowSearch] = useState(false)
+	//redux stuff
 	const user = useSelector((state: any) => state.user.value);
 	const dispatch = useDispatch();
 
-	const searchWrapperRef = useRef(null)
-	const cartWrapperRef = useRef(null)
+	//component visibility
+	const [showCart, setShowCart] = useState(false)
+	const [showSearch, setShowSearch] = useState(false)
 
 	function showCartHandler() {
 		setShowSearch(false)
@@ -35,8 +38,6 @@ export const ControlBar: React.FC = () => {
 		setShowCart(false)
 		setShowSearch(!showSearch)
 	}
-	useClickOutside(searchWrapperRef, ()=>{setShowSearch(false)})
-	useClickOutside(cartWrapperRef, ()=>{setShowCart(false)})
 
 	return (
 		<>
@@ -60,14 +61,14 @@ export const ControlBar: React.FC = () => {
 				}
 
 				<div className={style.searchWrapper}>
-					<div ref={searchWrapperRef} onClick={() => { showSearchHandler() }}><IoSearchOutline size={"1.5em"} /></div>
-					{showSearch && <Search />}
+					<div onClick={() => { showSearchHandler() }}><IoSearchOutline size={"1.5em"} /></div>
+					{showSearch && <Search setShowSearch={ setShowSearch }/>}
 				</div>
 				<div className={style.cartIconContainer}>
 					<CartItemsIndicator />
 					<div className={style.cartIcon}>
-						<div ref={cartWrapperRef} onClick={() => { showCartHandler() }}><IoBagHandleOutline size={"1.5em"} /></div>
-						{showCart && <Cart />}
+						<div onClick={() => { showCartHandler() }}><IoBagHandleOutline size={"1.5em"} /></div>
+						{showCart && <Cart setShowCart={setShowCart} />}
 					</div>
 				</div>
 			</div>

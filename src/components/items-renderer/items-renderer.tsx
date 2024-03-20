@@ -1,19 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { SaleItem } from 'components/saleitem/saleitem';
-import { IProduct } from 'library/contextstuff';
-import { SquareAdd } from 'components/adds/squareadd';
-import style from './items-renderer.module.css';
-// import { useViewport } from 'hooks/useViewport';
 
+//styles
+import style from './items-renderer.module.css';
+
+//components
+import { SaleItem } from 'components/saleitem/saleitem';
+import { SquareAdd } from 'components/adds/squareadd';
+
+//context
+import { IProduct } from 'library/contextstuff';
+
+//api
 import { fetchItemsByCategory } from 'library/api/saleitemfetch';
 
 export const ItemsRenderer: React.FC = () => {
 	let { category } = useParams()
 	const [categoryList, setCategoryList] = useState([])
-	// const { width } = useViewport();
-
 
 	function categoryFetch(category: string) {
 		fetchItemsByCategory(category).then(

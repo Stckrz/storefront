@@ -1,9 +1,13 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
+
+//styles
 import style from './register.module.css';
 import formStyle from 'library/formStyles.module.css';
+
+//api
 import { sendAuth } from 'library/api/userfetch';
 
+//redux
 import { useSelector, useDispatch } from 'react-redux';
 import { setUser } from '../../../redux/slices/userslice';
 
@@ -15,6 +19,7 @@ export const RegisterUser: React.FC = () => {
 
 	const [registerError, setRegisterError] = useState<any>("")
 
+	//redux
 	const dispatch = useDispatch();
 	const user = useSelector((state: any) => state.user.value);
 
@@ -26,7 +31,6 @@ export const RegisterUser: React.FC = () => {
 		} else {
 			handleRegisterSubmit()
 		}
-
 	}
 
 	async function handleRegisterSubmit() {
@@ -36,15 +40,15 @@ export const RegisterUser: React.FC = () => {
 			"password2": repeatpass,
 		}
 		let a = await sendAuth(userData)
-		a.username ?
-			dispatch(setUser(a))
+		a.username 
+			? dispatch(setUser(a))
 			: setRegisterError("username already exists")
 	}
 
 	return (
 		<>
-			{!user.username ?
-				<div className={style.registerFormContainer}>
+			{!user.username 
+				? <div className={style.registerFormContainer}>
 					<div className={style.registerWrap}>
 						<div className={formStyle.inputField}>Username:
 							<input onChange={e => setUsername(e.target.value)} className={style.inputBox} />
@@ -58,9 +62,8 @@ export const RegisterUser: React.FC = () => {
 						<button className={formStyle.formButton} onClick={() => passcheck(pass, repeatpass)}>Register</button>
 						<div>{registerError}</div>
 					</div>
-				</div>
-				:
-				<div className={style.registerConfirmation}>User created: {user.username}</div>
+				  </div>
+				: <div className={style.registerConfirmation}>User created: {user.username}</div>
 			}
 		</>
 	)

@@ -2,9 +2,7 @@ import React from 'react';
 import { FaTwitter, FaTiktok, FaFacebook } from 'react-icons/fa';
 import style from './socials.module.css';
 
-
 export const Socials: React.FC = () => {
-
 
 	return (
 		<>
@@ -14,6 +12,5 @@ export const Socials: React.FC = () => {
 				<FaFacebook size={"3em"} />
 			</div>
 		</>
-
 	)
 }

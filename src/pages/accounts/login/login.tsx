@@ -1,9 +1,13 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
+
+//styles
 import style from './login.module.css';
 import formStyles from 'library/formStyles.module.css';
+
+//api
 import { sendLogin } from 'library/api/userfetch';
 
+//redux
 import { useSelector, useDispatch } from 'react-redux';
 import { setUser } from '../../../redux/slices/userslice';
 
@@ -13,6 +17,7 @@ export const UserLogin: React.FC = () => {
 
 	const [loginError, setLoginError] = useState<any>("")
 
+	//redux
 	const user = useSelector((state: any) => state.user.value);
 	const dispatch = useDispatch();
 

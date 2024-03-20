@@ -1,6 +1,9 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
+
+//styles
 import style from './dropdown.module.css';
+
+//icons
 import { IoIosArrowUp } from 'react-icons/io';
 
 interface DropdownProps {
@@ -15,10 +18,9 @@ export const Dropdown: React.FC<DropdownProps> = ({ description }) => {
 			<div onClick={() => { setDropShown(!dropShown) }} className={style.dropdownBox}>
 				<div className={style.dropdownText}>Description</div>
 				<div className={
-					!dropShown ?
-						`${style.dropdownIcon} ${style.dropdownIconFlipped}`
-						:
-						`${style.dropdownIcon}`}>
+					!dropShown 
+						? `${style.dropdownIcon} ${style.dropdownIconFlipped}`
+						: `${style.dropdownIcon}`}>
 					<IoIosArrowUp />
 				</div>
 			</div>

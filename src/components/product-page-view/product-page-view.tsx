@@ -1,30 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { IProduct, } from 'library/contextstuff';
 
-import { useViewport } from 'hooks/useViewport';
-import { Dropdown } from 'components/dropdown/dropdown';
-import { CommentsBox } from 'components/comments/commentsbox';
-import { IoArrowBack } from 'react-icons/io5'
-
+//styles
 import style from './product-page-view.module.css';
 
-import { fetchItemById } from 'library/api/saleitemfetch';
-
+//redux
 import { useDispatch } from 'react-redux';
 import { addCartItem } from '../../redux/slices/cartslice';
 
+//context
+import { IProduct, } from 'library/contextstuff';
 
+//hooks
+import { useViewport } from 'hooks/useViewport';
+
+//components
+import { Dropdown } from 'components/dropdown/dropdown';
+import { CommentsBox } from 'components/comments/commentsbox';
+
+//icons
+import { IoArrowBack } from 'react-icons/io5'
+
+//api
+import { fetchItemById } from 'library/api/saleitemfetch';
 
 export const PageView: React.FC = () => {
+	//router 
 	const { id } = useParams();
-	const [product, setProduct] = useState<IProduct>();
+	const navigate = useNavigate();
 
 	const { width } = useViewport();
-
 	const dispatch = useDispatch()
+	const [product, setProduct] = useState<IProduct>();
 
-	const navigate = useNavigate();
 	const goBack = () => {
 		navigate(-1);
 	}
@@ -49,7 +57,7 @@ export const PageView: React.FC = () => {
 
 	useEffect(() => {
 		findProduct()
-	}, [])
+	}, [id])
 
 	if (!id) {
 		return null
@@ -66,6 +74,7 @@ export const PageView: React.FC = () => {
 							<IoArrowBack size={"2em"} />
 						</div>
 					}
+
 					<div className={style.mainBox}>
 						<div className={style.productSpotlight}>
 							<div className={style.productPageImgContainer}><img src={product.image_url} alt={"product"} /></div>

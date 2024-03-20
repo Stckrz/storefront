@@ -1,12 +1,19 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
-import { IComment } from 'library/contextstuff';
-import { Comment } from 'components/comments/comment/comment';
-import { NewCommentForm } from 'components/comments/newcomment/newcomment';
+import React, { useEffect, useState } from 'react';
+
+//styles
 import style from './commentsbox.module.css';
 
+//context
+import { IComment } from 'library/contextstuff';
+
+//components
+import { Comment } from 'components/comments/comment/comment';
+import { NewCommentForm } from 'components/comments/newcomment/newcomment';
+
+//api
 import { fetchComments } from 'library/api/commentfetch';
 
+//redux
 import { useSelector } from 'react-redux';
 
 interface CommentsBoxProps {

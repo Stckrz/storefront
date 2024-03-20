@@ -4,7 +4,7 @@ export const useClickOutside = (ref: React.RefObject<HTMLDivElement>, callback: 
 
 	useEffect(() => {
 		const handleClickOutside = (e: any) => {
-			if (!ref.current?.contains(e.target)) {
+			if (ref.current && !ref.current.contains(e.target)) {
 				callback();
 			}
 		};
