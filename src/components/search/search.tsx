@@ -1,29 +1,42 @@
 import React from 'react';
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
+import { useDebounce } from 'hooks/useDebounce';
 import style from './search.module.css';
 import { IProduct } from 'library/contextstuff';
-import { ItemsDatabase } from 'pages/layout/layout';
 import { Link } from 'react-router-dom';
 
 import { CompressedItem } from 'components/compressed-item/compressed-item';
+
+import { fetchItemByString } from 'library/api/saleitemfetch';
 
 
 
 export const Search: React.FC = () => {
 
 	const [searchText, setSearchText] = useState<string>("");
-	const { data } = useContext(ItemsDatabase)
+	const debouncedValue = useDebounce(searchText, 200)
+	const [data, setData] = useState<IProduct[]>([])
 
 	function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
 		setSearchText(e.target.value.toLowerCase());
 	};
 
-	function handleSearch() {
-		return data.filter((item: IProduct) => item.name.toLowerCase().includes(searchText));
-	};
+
+	async function itemSearch(string: string) {
+		let searchdata = await fetchItemByString(debouncedValue);
+		console.log('searched')
+		if (searchdata && searchdata.length > 0) {
+			setData(searchdata)
+		} else {
+			setData([])
+		}
+	}
 
 
-
+	useEffect(() => {
+		searchText !== "" &&
+			itemSearch(searchText)
+	}, [debouncedValue])
 	return (
 		<>
 			<div className={style.searchbarContainer}>
@@ -32,9 +45,10 @@ export const Search: React.FC = () => {
 					{searchText !== "" &&
 						<div>
 							{
-								handleSearch().map((item: IProduct) => {
+								data.map((item: IProduct) => {
 									return (
-											<div className={style.compressedItemContainer}>
+										item.name &&
+										<div key={item._id} className={style.compressedItemContainer}>
 											<Link to={`/products/${item._id}`}>
 												<div className={style.compressedItemImg}><img src={item.image_url} /></div>
 												<div className={style.compressedItemDetails}>
@@ -42,7 +56,8 @@ export const Search: React.FC = () => {
 													<div>{Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(item.price)}</div>
 												</div>
 											</Link>
-											</div>
+										</div>
+
 									)
 								})
 							}

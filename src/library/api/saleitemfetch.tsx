@@ -28,6 +28,15 @@ export async function fetchItemById(id: string) {
 	} catch (error) { console.log(error) }
 }
 
+//fetches an id by a search string
+export async function fetchItemByString(string: string) {
+	try {
+		const response = await fetch(`http://127.0.0.1:5000/sale-items/getOneByString/${string}`)
+		const fetchedData = await response.json();
+		return fetchedData
+	} catch (error) { console.log(error) }
+}
+
 //posts a new item
 export async function addItem(postdata: IProduct) {
 	try {
