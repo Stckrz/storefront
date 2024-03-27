@@ -3,11 +3,8 @@
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-	/* overflow-y: scroll; */
-	/* height: 68%; */
 	padding: 10px;
 	gap: 15px;
-	/* background-color: #fcefe8; */
 }
 
 .closeButton{
@@ -61,6 +58,7 @@
 	width: 100%;
 	background-color: black;
 	color: white;
+	cursor: pointer;
 }
 
 .cartButtonContainer{

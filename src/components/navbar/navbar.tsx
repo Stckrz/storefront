@@ -33,7 +33,7 @@ export const Navbar: React.FC = () => {
 
 	function activeHandler(a: string) {
 		let newList = [...categoryLinks]
-		for(const item of newList){
+		for (const item of newList) {
 			a === item.name ? item.isActive = true : item.isActive = false
 		}
 		setNavVisible(!navVisible)
@@ -43,53 +43,104 @@ export const Navbar: React.FC = () => {
 	return (
 		<>
 			{width.width <= 800 &&
-				<div className={ style.navbarWrapper }>
-					<div className={ style.hamburgerLogoGroup }>
+				<div className={style.navbarWrapper}>
+					<div className={style.hamburgerLogoGroup}>
 						<div className="hamburger" onClick={() => { setNavVisible(!navVisible) }}>
 							{navVisible === false ?
 								<IoMenuOutline size={"2em"} /> : <IoClose size={"2em"} />
 							}
 						</div>
 						{navVisible === true &&
-							<div className={ style.expandibleNavbar } >
+							<div className={style.expandibleNavbar} >
 
-								<div className={ style.navLinkContainer }>
-									<div className={ style.categoryLink } onClick={() => { activeHandler("HOME") }}><Link to="/">HOME</Link></div>
+								<div className={style.navLinkContainer}>
+									<div
+										className={style.categoryLink}
+										onClick={() => { activeHandler("HOME") }}>
+										<Link to="/">
+											HOME
+										</Link>
+									</div>
 									{
 										categoryLinks.map((item) => {
 											return (
 												item.isActive === true ?
-													<div key={item.name} className={ style.categoryLink } onClick={() => { activeHandler(item.name) }} style={{ color: "black" }}><Link to={item.pathname}>{item.name}</Link></div>
+													<div
+														key={item.name}
+														className={style.categoryLink}
+														onClick={() => { activeHandler(item.name) }}
+														style={{ color: "black" }}>
+														<Link to={item.pathname}>
+															{item.name}
+														</Link>
+													</div>
 													:
-													<div key={item.name} className={ style.categoryLink } onClick={() => { activeHandler(item.name) }}><Link to={item.pathname}>{item.name}</Link></div>
+													<div
+														key={item.name}
+														className={style.categoryLink}
+														onClick={() => { activeHandler(item.name) }}>
+														<Link to={item.pathname}>
+															{item.name}
+														</Link>
+													</div>
 											)
 										})
 									}
 								</div>
 							</div>
 						}
-						<div className={ style.storeName }><Link to="/">Storespace</Link></div>
+						<div className={style.storeName}>
+							<Link to="/">Storespace</Link>
+						</div>
 					</div>
-					<div className={ style.controlBarContainer }><ControlBar /></div>
+					<div className={style.controlBarContainer}>
+						<ControlBar />
+					</div>
 				</div>
 			}
 			{width.width > 800 &&
-				<div className={ style.desktopNavbarWrapper }>
-					<div className={ style.navItems }>
-					<div className={ style.storeName } onClick={()=>{activeHandler("HOME")}}><Link to="/">Storespace</Link></div>
-						<div className={ style.desktopNavLinkContainer }>
+				<div className={style.desktopNavbarWrapper}>
+					<div className={style.navItems}>
+						<div
+							className={style.storeName}
+							onClick={() => { activeHandler("HOME") }}>
+							<Link to="/">
+								Storespace
+							</Link>
+						</div>
+						<div className={style.desktopNavLinkContainer}>
 							{
 								categoryLinks.map((item) => {
 									return (
 										item.isActive === true ?
-											<div key={item.name} className={ style.categoryLink } onClick={() => { activeHandler(item.name) }} style={{ color: "black" }}><Link to={item.pathname}>{item.name}</Link></div>
+											<div
+												key={item.name}
+												className={style.categoryLink}
+												onClick={() => { activeHandler(item.name) }}
+												style={{ color: "black" }}>
+												<Link to={item.pathname}>
+													{item.name}
+												</Link>
+											</div>
 											:
-											<div key={item.name} className={ style.categoryLink } onClick={() => { activeHandler(item.name) }}><Link to={item.pathname} style={{color: '#c9beb9' }}>{item.name}</Link></div>
+											<div
+												key={item.name}
+												className={style.categoryLink}
+												onClick={() => { activeHandler(item.name) }}>
+												<Link to={item.pathname}
+													style={{ color: '#c9beb9' }}>
+													{item.name}
+												</Link>
+											</div>
 									)
 								})
 							}
 						</div>
-						<div className={ style.controlBarContainer } onClick = {()=>{activeHandler("HOME")}}><ControlBar /></div>
+						<div
+							className={style.controlBarContainer}
+							onClick={() => { activeHandler("HOME") }}>
+							<ControlBar />
+						</div>
 					</div>
 				</div>
 			}

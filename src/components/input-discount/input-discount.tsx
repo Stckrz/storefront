@@ -26,7 +26,6 @@ export const DiscountInput: React.FC<DiscountInputProps> = ({ setDiscount }) => 
 	return (
 		<>
 			<div className={style.discountWrapper}>
-				<div>ass</div>
 				<input className={style.discountInput} onChange={handleChange} />
 				<button className={style.discountButton} onClick={discountHandler}>Apply</button>
 			</div>

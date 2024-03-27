@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 //styles
 import style from './register.module.css';
-import formStyle from 'library/formStyles.module.css';
+import formStyles from 'library/formStyles.module.css';
 
 //api
 import { sendAuth } from 'library/api/userfetch';
@@ -50,16 +50,16 @@ export const RegisterUser: React.FC = () => {
 			{!user.username 
 				? <div className={style.registerFormContainer}>
 					<div className={style.registerWrap}>
-						<div className={formStyle.inputField}>Username:
+						<div className={formStyles.inputField}>Username:
 							<input onChange={e => setUsername(e.target.value)} className={style.inputBox} />
 						</div>
-						<div className={formStyle.inputField} >Password:
-							<input onChange={e => setPass(e.target.value)} className={style.inputBox} />
+						<div className={formStyles.inputField} >Password:
+							<input type={"password"} onChange={e => setPass(e.target.value)} className={style.inputBox} />
 						</div>
-						<div className={formStyle.inputField} >Repeat Password:
-							<input onChange={e => setRepeatPass(e.target.value)} className={style.inputBox} />
+						<div className={formStyles.inputField} >Repeat Password:
+							<input type={"password"} onChange={e => setRepeatPass(e.target.value)} className={style.inputBox} />
 						</div>
-						<button className={formStyle.formButton} onClick={() => passcheck(pass, repeatpass)}>Register</button>
+						<button className={`${formStyles.formButton} ${formStyles.submit}`} onClick={() => passcheck(pass, repeatpass)}>Register</button>
 						<div>{registerError}</div>
 					</div>
 				  </div>

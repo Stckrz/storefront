@@ -53,3 +53,11 @@
 	height: 20%;
 	width: 100%;
 }
+
+
+.submit{
+	background-color: #00FF40;
+}
+.cancel{
+	background-color: black;
+}

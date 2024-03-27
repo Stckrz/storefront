@@ -77,17 +77,30 @@ export const PageView: React.FC = () => {
 
 					<div className={style.mainBox}>
 						<div className={style.productSpotlight}>
-							<div className={style.productPageImgContainer}><img src={product.image_url} alt={"product"} /></div>
+							<div
+								className={style.productPageImgContainer}>
+								<img src={product.image_url} alt={"product"} />
+							</div>
 						</div>
 						<div className={style.productDetails}>
 							<div className={style.buyingOptions}>
-								<div className={style.productPageItemName}>{product.name}</div>
-								<div className={style.productPageItemPrice}>{Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price)}</div>
+								<div
+									className={style.productPageItemName}>
+									{product.name}
+								</div>
+								<div
+									className={style.productPageItemPrice}>
+									{Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price)}
+								</div>
 								<div className={style.productPageCounter}>
 								</div>
 							</div>
 							<div className={style.cartButtonContainer}>
-								<button className={style.addCartButton} onClick={() => { addCartClickHandler(product) }}>Add to cart</button>
+								<button
+									className={style.addCartButton}
+									onClick={() => { addCartClickHandler(product) }}>
+									Add to cart
+								</button>
 							</div>
 							<div className={style.freeShipping}>free standard shipping on orders over $25.00</div>
 							<div className="description"><Dropdown description={product.description} /></div>

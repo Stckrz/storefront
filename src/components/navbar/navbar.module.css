@@ -132,6 +132,11 @@
 }
 
 
+@media screen and (max-width: 1300px){
+	.categoryLink{
+		font-size: 12px;
+	}
+}
 
 @media screen and (min-width: 800px){
 	.categoryLink{

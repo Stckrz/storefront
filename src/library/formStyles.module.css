@@ -3,6 +3,17 @@
 	justify-self: flex-end;
 	margin-top: 5px;
 	width: 25%;
+	border: none;
+	height: 2em;
+	color: white;
+	cursor: pointer;
+}
+
+.submit{
+	background-color: #00FF40;
+}
+.cancel{
+	background-color: black;
 }
 
 .inputField{

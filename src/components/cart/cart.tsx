@@ -17,18 +17,18 @@ import { useClickOutside } from 'hooks/useClickOutside';
 // context
 import { ICartItem } from 'library/contextstuff';
 
-interface CartProps{
+interface CartProps {
 	setShowCart: React.Dispatch<SetStateAction<boolean>>
 }
 
-export const Cart: React.FC<CartProps> = ({setShowCart}) => {
+export const Cart: React.FC<CartProps> = ({ setShowCart }) => {
 	//redux
 	const cart = useSelector((state: any) => state.cart).arr;
 	const dispatch = useDispatch()
 
 	//useRef
 	const cartWrapperRef = useRef(null);
-	useClickOutside(cartWrapperRef, ()=>{setShowCart(false)})
+	useClickOutside(cartWrapperRef, () => { setShowCart(false) })
 
 	const deleteCartItem = (cartid: ICartItem) => {
 		dispatch(removeCartItem(cartid))
@@ -36,20 +36,31 @@ export const Cart: React.FC<CartProps> = ({setShowCart}) => {
 
 	useEffect(() => {
 	}, [cart])
-	
+
 
 	return (
 		<>
-			<div ref={ cartWrapperRef } className={style.cartPanelContainer}>
+			<div ref={cartWrapperRef} className={style.cartPanelContainer}>
 				{cart.length > 0 ?
 					<div className={style.cartItemsWrapper}>
 						{
 							cart.map((item: ICartItem) => {
 								return (
 									<div key={item.id} className={style.cartItemContainer}>
-										<CompressedItem item={{ id: item.id, title: item.title, price: item.price, quantity: item.quantity, image: item.image, category: item.category }} />
-										<div>{item.quantity}</div>
-										<div className={style.deleteText} onClick={() => { deleteCartItem(item) }}>Delete</div>
+										<CompressedItem
+											item={{
+												id: item.id,
+												title: item.title,
+												price: item.price,
+												quantity: item.quantity,
+												image: item.image,
+												category: item.category
+											}} />
+										<div
+											className={style.deleteText}
+											onClick={() => { deleteCartItem(item) }}>
+											Delete
+										</div>
 									</div>
 								)
 							})

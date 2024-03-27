@@ -52,20 +52,28 @@
 
 .shoplink {
 	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	left: 50%;
-	width: 50%;
+	width: 10%;
+	height: 10%;
+	border-radius: 0.5em;
+	background-color: #61fd1f;
 	top: 85%;
 	z-index: 2;
 }
+a:link{
+	text-decoration: none;
+}
 
-@media screen and (max-width: 800px){
+@media screen and (max-width: 1300px){
 	.bigbannercontainer{
 		justify-content: center;
 		width: 100vw;
 		aspect-ratio: 1/1;
 	}
 	.bigbannerimg img{
-		object-position: 100% 150%;
 		width: 100%;
 		height: 100%;
 	}

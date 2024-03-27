@@ -24,7 +24,10 @@ export const CompressedItem: React.FC<CompressedItemProps> = ({ item }) => {
 							{(item.title).toUpperCase()}
 						</Link>
 					</div>
-					<div className={style.compressedItemPrice}>{Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(item.price * item.quantity)}</div>
+					<div
+						className={style.compressedItemPrice}>
+						{Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(item.price * item.quantity)}
+					</div>
 					<div className={style.compressedItemQuantity}>
 						<Counter cartItem={item} />
 					</div>

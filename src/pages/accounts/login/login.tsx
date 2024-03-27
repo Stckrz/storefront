@@ -49,7 +49,7 @@ export const UserLogin: React.FC = () => {
 							password:
 							<input type={'password'} onChange={e => setPass(e.target.value)} />
 						</div>
-						<button className={formStyles.formButton} onClick={handleLoginSubmit}>Login</button>
+						<button className={`${formStyles.formButton} ${formStyles.submit}`} onClick={handleLoginSubmit}>Login</button>
 						<div className={style.loginError}>{loginError}</div>
 					</div>
 				</div> :

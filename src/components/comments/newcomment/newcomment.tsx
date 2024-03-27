@@ -42,6 +42,7 @@ export const NewCommentForm: React.FC<NewCommentFormProps> = ({ id, onSubmit, se
 		sendComment(newComment)
 		fetchComments(id).then((item: any) => setComments(item))
 		onSubmit?.(newComment)
+		setShowForm(false)
 	}
 
 	return (
@@ -53,16 +54,15 @@ export const NewCommentForm: React.FC<NewCommentFormProps> = ({ id, onSubmit, se
 					</div>
 					<div className={style.bodyForm}>
 						Body:
-						{user.username}
 						<textarea className={style.inputBody} onChange={handleBodyChange} />
 					</div>
 					<div className={style.buttonBox} >
-						<button className={formStyles.formButton} onClick={sendCommentCallbackHandler}>submit</button>
-						<button className={formStyles.formButton} onClick={() => { setShowForm(!showForm) }}>cancel</button>
+						<button className={`${formStyles.formButton} ${formStyles.submit}`} onClick={sendCommentCallbackHandler}>submit</button>
+						<button className={`${formStyles.formButton} ${formStyles.cancel}`} onClick={() => { setShowForm(!showForm) }}>cancel</button>
 					</div>
 				</div>
 				: <div className={style.newCommentButtonBox} >
-					<button className={formStyles.formButton} onClick={() => { setShowForm(!showForm) }}>add comment</button>
+					<button className={`${ formStyles.formButton } ${ formStyles.submit }`} onClick={() => { setShowForm(!showForm) }}>add comment</button>
 				</div>
 			}
 		</>
